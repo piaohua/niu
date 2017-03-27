@@ -1,0 +1,49 @@
+syntax = "proto2";
+package protocol;
+
+// 登陆
+message CLogin
+{
+    optional uint32 code     = 1 [default = 1000];//协议号
+    required string phone    = 2;  // 手机
+    required string password = 3;  // 密码 (MD5)
+}
+
+message SLogin
+{
+    optional uint32 code     = 1 [default=1000];//协议号
+    optional string userid   = 2 ;//用户id
+    required uint32 error    = 3 ;//错误码
+}
+
+// 注册
+message CRegist
+{
+    optional uint32 code     = 1 [default = 1002];//协议号
+    optional string nickname = 2;//昵称
+    required string phone    = 3;//手机号
+    required string password = 4;//密码(md5)
+}
+
+message SRegist
+{
+    optional uint32 code   = 1 [default = 1002];//协议号
+    optional string userid = 2 ;//用户id
+    required uint32 error  = 3 ;//错误码
+}
+
+// 微信登录登陆
+message CWxLogin
+{
+    optional uint32 code    = 1 [default = 1004];//协议号
+    required string wxcode  = 2; //微信code
+    required string token   = 3; //token登录
+}
+
+message SWxLogin
+{
+    optional uint32 code    = 1 [default = 1004];//协议号
+    optional string userid  = 2 ;// 用户id
+    optional string token   = 3 ;// 返回access_token
+    required uint32 error   = 4 ;// 错误码
+}

@@ -1,0 +1,174 @@
+syntax = "proto2";
+package protocol;
+import "vo.proto";
+
+// 进入房间
+message CEnterRoom
+{ 
+	optional uint32 code        = 1 [default = 4000];//协议号
+	required string invitecode  = 2; //房间邀请码,为空时进入100人房间
+}
+message SEnterRoom
+{ 
+	optional uint32    code     = 1 [default = 4000];//协议号
+	required RoomData  roominfo = 2;//房间的详细资料
+	repeated RoomUser  userinfo = 3;//已在房间的玩家基础信息
+	optional RoomVote  voteinfo = 4;//发起投票的信息
+	required uint32    error    = 5 [default = 0]; // 错误码 
+}
+
+// 创建房间
+message CCreateRoom
+{
+	optional uint32 code    = 1 [default = 4001];//协议号
+	required string rname   = 2;  //房间名字
+	required uint32 rtype   = 3;  //房间类型
+	required uint32 ante    = 4;  //底分
+	required uint32 round   = 5;  //牌局数
+	required uint32 payment = 6;  //付费方式0=房主付费,1=AA付费 
+	required uint32 count   = 7;  //人数限制
+}
+// 返回房间数据,
+message SCreateRoom
+{ 
+	optional uint32 code    = 1 [default = 4001];//协议号
+	optional RoomData rdata = 2; //
+	required uint32 error   = 3 [default = 0]; // 错误码 
+}
+
+// 其他玩家进入房间
+message SCamein
+{
+	optional uint32   code    = 1 [default = 4003];//协议号
+	required RoomUser userinfo= 2;// 玩家的信息
+}
+
+// 离开房间
+message CLeave
+{
+	optional uint32 code = 1 [default = 4004];//协议号
+}
+message SLeave
+{
+	optional uint32 code   = 1 [default = 4004];//协议号
+	optional uint32 seat   = 2; //玩家选择的座位号
+	optional uint32 userid = 3; //玩家id
+	required uint32 error  = 4 [default = 0]; // 错误码 
+}
+
+// 踢人
+message CKick
+{
+	optional uint32 code = 1 [default = 4005];//协议号
+	required uint32 seat = 2; //被踢的玩家座位
+}
+message SKick
+{
+	optional uint32 code   = 1 [default = 4005];//协议号
+	optional uint32 seat   = 2; //被踢的玩家座位
+	optional uint32 userid = 3; //被踢的玩家id
+	optional uint32 result = 4; //0失败,1房主T人,2房间被解散
+	required uint32 error  = 5 [default = 0]; // 错误码 
+}
+
+//1.准备游戏(准备完成开始游戏时状态切为发牌)
+message CReady
+{
+	optional uint32 code  = 1 [default = 4006];//协议号
+	required bool   ready = 2; //true准备,false取消
+}
+message SReady
+{
+	optional uint32 code = 1 [default = 4006];//协议号
+	optional uint32 seat = 2; //准备游戏的玩家座位
+	optional bool   ready= 3; //true准备,false取消
+	required uint32 error= 4 [default = 0]; // 错误码 
+}
+
+//2.发牌(全部准备后或达到开始条件,发完状态切为抢庄)
+message SDraw
+{
+	optional uint32 code  = 1 [default = 4007];//协议号
+	required uint32 state = 2;  //房间状态,1抢庄中(发4张),2下注中(发第5张)
+	required int32  cards = 3;  //手牌4张,手牌1张
+}
+
+//3.开始抢庄(发完第一轮牌后,抢完切为下注)
+message CDealer
+{
+	optional uint32 code  = 1 [default = 4008];//协议号
+	required uint32 dealer= 2;  //1抢庄,0不抢
+}
+message SDealer
+{
+	optional uint32 code  = 1 [default = 4008];//协议号
+	required uint32 dealer= 2;  //1抢庄,0不抢
+	required uint32 error = 3 [default = 0]; // 错误码 
+}
+
+//完成抢庄,推送庄家位置
+message SPushDealer
+{
+	optional uint32 code  = 1 [default = 4009];//协议号
+	required uint32 dealer= 2;  //庄家位置
+}
+
+//4.玩家下注(抢庄完成后),下注完成后再步骤2发牌
+message CBet
+{
+	optional uint32 code = 1 [default = 4010];//协议号
+	required uint32 value= 2;  //提交相应的值
+}
+message SBet
+{
+	optional uint32 code  = 1 [default = 4010];//协议号
+	optional uint32 seat  = 2;  //玩家的座位号
+	required uint32 value = 3;  //值
+	required uint32 error = 4 [default = 0]; // 错误码
+}
+
+// 结算广播接口，游戏结束
+message SGameover
+{
+	optional uint32   code    = 1 [default = 4011];//协议号
+	required uint32   dealer  = 2;//庄家
+	required uint32   round   = 3;//剩余牌局数
+	repeated RoomOver data    = 4;//结算
+}
+
+//------------------
+
+// 私人局,发起投票申请解散房间
+message CLaunchVote
+{
+	optional uint32 code = 1 [default = 4016];//协议号
+}
+
+message SLaunchVote
+{
+	optional uint32 code = 1 [default = 4016];//协议号
+	required uint32 seat = 2; //发起人玩家座位号
+	optional uint32 error= 3;
+}
+
+// 私人局,发起投票,投票解散房间,如果投票成功，服务器主动推送SKick协议，并且reason字段值为1
+message CVote
+{
+	optional uint32 code = 1 [default = 4017];//协议号
+	required uint32 vote = 2; //0同意,1不同意
+}
+
+message SVote
+{
+	optional uint32 code = 1 [default = 4017];//协议号
+	required uint32 vote = 2; //0同意,1不同意
+	required uint32 seat = 3; //投票玩家座位号
+	optional uint32 error= 4;
+}
+
+// 投票解散房间事件结果,服务器主动推送
+message SVoteResult
+{
+	optional uint32 code = 1 [default = 4018];//协议号
+	required uint32 vote = 2; //0半数通过马上解散房间,1半数以上不通过终止解散房间
+}

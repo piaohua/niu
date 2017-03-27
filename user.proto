@@ -1,0 +1,30 @@
+syntax = "proto2";
+package protocol;
+import "vo.proto";
+
+// 获取游戏全局配置数据
+message CConfig
+{
+	optional uint32 code = 1 [default = 2000];//协议号
+}
+
+message SConfig
+{
+	optional uint32 code     = 1 [default=2000];//协议号
+	required string imageurl = 2;  // 玩家头像图片服务器地址和端口
+	required string version  = 3;  // 版本号
+}
+
+// 获取玩家的数据
+message CUserData
+{
+	optional uint32 code   = 1 [default=2002];//协议号
+	required string userid = 2;//用户id
+}
+
+message SUserData
+{
+	optional uint32 code   = 1 [default=2002];//协议号
+	optional UserData data = 2;
+	required uint32 error  = 3[default=0];  // 错误码
+}

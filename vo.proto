@@ -1,0 +1,67 @@
+syntax = "proto2";
+package protocol;
+
+// 玩家的详细数据
+message UserData
+{
+	required string userid    =1;//用户账号
+	required string nickname  =2;//昵称
+	required string phone     =3;//电话号码
+	required uint32 sex       =4;//用户性别,男1 女0
+	required string photo     =5;//头像
+	required uint32 coin      =6;//金币
+	required uint32 diamond   =7;//钻石
+	required uint32 roomtype  =8;//所在房间类型id
+	required uint32 roomid    =9;//所在房间id
+	required string invitecode=10;//所在房间邀请码
+}
+
+// 玩家的基础数据
+message RoomUser
+{
+	required string userid   =1;//用户账号
+	required string nickname =2;//昵称
+	required uint32 seat     =3;//座位号
+	required uint32 sex      =4;//用户性别,男1 女0
+	required string photo    =5;//头像
+	required uint32 coin     =7;//金币
+	required uint32 diamond  =8;//钻石
+	required bool   ready    =9;//玩家de准备状态
+	required uint32 turn     =10;//当前打牌玩家
+	required int32  score    =11;//私人局积分
+	required uint32 dealer   =12;//玩家抢庄0抢庄中,1抢庄,2不抢
+	required uint32 bet      =13;//玩家下注0下注中,n下注额度
+}
+
+// 房间数据
+message RoomData
+{
+	required uint32 roomid    = 1;  //牌局id
+	required uint32 rtype     = 2;  //room type
+	required string rname     = 3;  //room name
+	required uint32 expire    = 4;  //牌局设定的时间（牌局存在的时间）
+	required uint32 count     = 5;  //当前房间里玩家数量
+	required string invitecode= 6;  //房间邀请码  私人牌局都有邀请码,邀请码是唯一的
+	required uint32 dealer    = 7;  //庄家seat
+	required uint32 round     = 8;  //剩余牌局数
+	required string userid    = 9;  //房主ID
+	required uint32 state     =10;  //房间状态,0准备中,1抢庄中,2下注中
+}
+
+// 结算数据
+message RoomOver
+{
+	required uint32 seat  =1; //玩家座位号
+	repeated int32  cards =2; //玩家手牌
+	required uint32 value =3; //牌力
+	required int32  total =4; //总番数,倍数
+	required int32  score =5; //输赢数量
+}
+
+// 投票信息
+message RoomVote
+{
+	required uint32 seat    =1;//发起投票的玩家座位号
+	repeated uint32 agree   =2;//同意
+	repeated uint32 disagree=3;//不同意
+}
