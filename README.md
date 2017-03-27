@@ -1,8 +1,4 @@
-# majiang
-
-Go语言麻将服务器实现
-
-Backend implementation of server in golang 
+# niuniu protocol
 
 # usage
 
@@ -15,20 +11,6 @@ protobuf
 
 # document
 
-协议数据打包：
-handerLen + protoLen + dataLen + data
-
-handerLen uint32 = 1 : 包头长度1byte(包序)
-protoLen uint32  = 4 : 协议号长度4(大端序)
-dataLen uint32 = 4 : 数据长度4(大端序)
-data uint32 = dataLen : 数据
-
-包序算法：index++; index = index % 256
-
-server port:7001
-
-
-/*
 
 选庄时间显示10秒，实际时间为20秒
 下注时间显示10秒，实际时间为20秒
@@ -87,56 +69,12 @@ server port:7001
 如：玩家A抢庄成为庄家，玩家B下注4，以牛牛牌型获得胜利，
 则，玩家A需支付给玩家B的分数为： 4*3=12
 
-*/
+100人的是只有五家,
+庄家，天，地，玄，黄
+1,2,3,4,5
 
-const (
-	HgihCard = iota + 0x00
-	Niu1
-	Niu2
-	Niu3
-	Niu4
-	Niu5
-	Niu6
-	Niu7
-	Niu8
-	Niu9
-	NiuNiu
-	FourFlower
-	FiveFlower
-	FiveTiny
-	Bomb
-)
+玩家可以选择上庄(达到一定条件可以上庄,在下注时间结束时都可以选择上庄)，
+多人选择上庄时按队列等待开轮做庄，没人上庄时，系统当庄，一个玩家开始下注时则开始下注倒计时
+时间到时发牌，开牌，结算
 
-// rank
-const (
-	Ace = iota + 0x01
-	Deuce
-	Trey
-	Four
-	Five
-	Six
-	Seven
-	Eight
-	Nine
-	Ten
-	Jack
-	Queen
-	King
-
-	RankMask = 0x0F
-	RemMask  = 0x0A
-)
-
-// suit
-const (
-	Club    = 0x40
-	Heart   = 0x30
-	Spade   = 0x20
-	Diamond = 0x10
-
-	SuitMask = 0xF0
-)
-
-const (
-	NumCard = 52
-)
+私人场玩家全部准备才开始，由玩家自己选择组合牛，玩家不操作则一直等待，没有超时机制
