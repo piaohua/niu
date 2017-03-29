@@ -31,6 +31,7 @@ message RoomUser
 	required int32  score    =11;//私人局积分
 	required uint32 dealer   =12;//玩家抢庄0抢庄中,1抢庄,2不抢
 	required uint32 bet      =13;//玩家下注0下注中,n下注额度
+	repeated int32 cards     =14;//玩家手牌
 }
 
 // 房间数据
