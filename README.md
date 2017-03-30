@@ -1,6 +1,4 @@
-# majiang
-
-Go语言麻将服务器实现
+# niuniu
 
 Backend implementation of server in golang 
 
@@ -14,19 +12,6 @@ cd bin
 protobuf
 
 # document
-
-协议数据打包：
-handerLen + protoLen + dataLen + data
-
-handerLen uint32 = 1 : 包头长度1byte(包序)
-protoLen uint32  = 4 : 协议号长度4(大端序)
-dataLen uint32 = 4 : 数据长度4(大端序)
-data uint32 = dataLen : 数据
-
-包序算法：index++; index = index % 256
-
-server port:7001
-
 
 /*
 

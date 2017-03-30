@@ -30,7 +30,7 @@ message RoomUser
 	required uint32 turn     =10;//当前打牌玩家
 	required int32  score    =11;//私人局积分
 	required uint32 dealer   =12;//玩家抢庄0抢庄中,1抢庄,2不抢
-	required uint32 bet      =13;//玩家下注0下注中,n下注额度
+	optional uint32 bet      =13;//玩家下注0下注中,n下注额度
 	repeated uint32 cards     =14;//玩家手牌
 }
 
@@ -49,14 +49,29 @@ message RoomData
 	required uint32 state     =10;  //房间状态,0准备中,1抢庄中,2下注中
 }
 
-// 结算数据
+// 投票信息
+message RoomBets
+{
+	required uint32 seat    =1;//百人场位置
+	required uint32 bets    =2;//位置上下注倍数
+}
+
+// 结算数据,百人场时为5个位置1庄家，2天，3地，4玄，5黄
 message RoomOver
 {
 	required uint32 seat  =1; //玩家座位号
-	repeated uint32  cards =2; //玩家手牌
+	repeated uint32 cards =2; //玩家手牌
 	required uint32 value =3; //牌力
-	required int32  total =4; //总番数,倍数
-	required int32  score =5; //输赢数量
+	required int32  total =4; //总输赢,百人场时为位置总输赢
+	optional int32  score =5; //输赢数量
+}
+
+// 投票信息
+message RoomScore
+{
+	required uint32 seat    =1;//玩家位置
+	required string userid  =2;//玩家ID
+	required int32  score   =3;//当局输赢
 }
 
 // 投票信息

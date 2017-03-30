@@ -14,7 +14,8 @@ message SEnterRoom
 	required RoomData  roominfo = 2;//房间的详细资料
 	repeated RoomUser  userinfo = 3;//已在房间的玩家基础信息
 	optional RoomVote  voteinfo = 4;//发起投票的信息
-	required uint32    error    = 5 [default = 0]; // 错误码 
+	repeated RoomBets  betsinfo = 5;//下注倍数
+	required uint32    error    = 6 [default = 0]; // 错误码 
 }
 
 // 创建房间
@@ -119,14 +120,16 @@ message SPushDealer
 message CBet
 {
 	optional uint32 code = 1 [default = 4010];//协议号
-	required uint32 value= 2;  //提交相应的值
+	optional uint32 seatbet = 2;  //百人场使用,下注位置,1庄家，2天，3地，4玄，5黄
+	required uint32 value= 3;  //提交相应的值
 }
 message SBet
 {
 	optional uint32 code  = 1 [default = 4010];//协议号
 	optional uint32 seat  = 2;  //玩家的座位号
-	required uint32 value = 3;  //值
-	required uint32 error = 4 [default = 0]; // 错误码
+	optional uint32 seatbet = 3;  //百人场使用,下注位置,1庄家，2天，3地，4玄，5黄
+	required uint32 value = 4;  //值
+	required uint32 error = 5 [default = 0]; // 错误码
 }
 
 //5.玩家组合牌提交
@@ -153,6 +156,7 @@ message SGameover
 	required uint32   dealer  = 2;//庄家
 	required uint32   round   = 3;//剩余牌局数
 	repeated RoomOver data    = 4;//结算
+	repeated RoomScore score  = 5;//结算,百人场个人输赢
 }
 
 //------------------
