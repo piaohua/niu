@@ -52,7 +52,7 @@ message SLeave
 {
 	optional uint32 code   = 1 [default = 4004];//协议号
 	optional uint32 seat   = 2; //玩家选择的座位号
-	optional uint32 userid = 3; //玩家id
+	optional string userid = 3; //玩家id
 	required uint32 error  = 4 [default = 0]; // 错误码 
 }
 
@@ -91,7 +91,7 @@ message SDraw
 	optional uint32 code  = 1 [default = 4007];//协议号
 	required uint32 seat  = 2;  //位置
 	required uint32 state = 3;  //房间状态,1抢庄中(发4张),2下注中(发第5张)
-	repeated int32  cards = 4;  //手牌4张,手牌1张
+	repeated uint32 cards = 4;  //手牌4张,手牌1张
 }
 
 //3.开始抢庄(发完第一轮牌后,抢完切为下注)
@@ -105,7 +105,7 @@ message SDealer
 	optional uint32 code  = 1 [default = 4008];//协议号
 	required uint32 seat  = 2;  //位置
 	required bool   dealer= 3;  //true抢庄,false不抢
-	required uint32 error = 3 [default = 0]; // 错误码 
+	required uint32 error = 4 [default = 0]; // 错误码 
 }
 
 //完成抢庄,推送庄家位置
@@ -134,7 +134,7 @@ message CNiu
 {
 	optional uint32 code = 1 [default = 4011];//协议号
 	required uint32 value= 2; //提交相应的值,0为无
-	repeated int32  cards= 3; //手牌5张,前3张为牛,后2张为点
+	repeated uint32 cards= 3; //手牌5张,前3张为牛,后2张为点
 }
 //广播提交结果
 message SNiu
@@ -142,8 +142,8 @@ message SNiu
 	optional uint32 code  = 1 [default = 4011];//协议号
 	optional uint32 seat  = 2;  //玩家的座位号
 	required uint32 value = 3;  //提交相应的值,0为无
-	repeated int32  cards = 3;  //手牌5张,前3张为牛,后2张为点
-	required uint32 error = 4 [default = 0]; // 错误码
+	repeated uint32 cards = 4;  //手牌5张,前3张为牛,后2张为点
+	required uint32 error = 5 [default = 0]; // 错误码
 }
 
 // 结算广播接口，游戏结束
