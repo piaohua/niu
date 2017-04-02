@@ -41,7 +41,7 @@ message RoomData
 	required uint32 rtype     = 2;  //room type
 	required string rname     = 3;  //room name
 	required uint32 expire    = 4;  //牌局设定的时间（牌局存在的时间）
-	required uint32 count     = 5;  //当前房间里玩家数量
+	required uint32 count     = 5;  //当前房间限制玩家数量
 	required string invitecode= 6;  //房间邀请码  私人牌局都有邀请码,邀请码是唯一的
 	required uint32 dealer    = 7;  //庄家seat
 	required uint32 round     = 8;  //剩余牌局数

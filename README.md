@@ -109,7 +109,6 @@ const (
 	King
 
 	RankMask = 0x0F
-	RemMask  = 0x0A
 )
 
 // suit
