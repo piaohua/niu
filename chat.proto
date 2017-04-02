@@ -4,14 +4,14 @@ package protocol;
 // 房间广播文字聊天
 message CChatText
 {
-    optional uint32 code    = 1 [default = 2000];//协议号
+    optional uint32 code    = 1 [default = 2003];//协议号
     required bytes  content = 2;
 }
 
 // 广播文字聊天
 message SChatText
 {
-    optional uint32 code    = 1 [default = 2000];//协议号
+    optional uint32 code    = 1 [default = 2003];//协议号
     optional uint32 seat    = 2;
     optional bytes  content = 3;
     required uint32 error   = 4 [default = 0]; // 错误码
