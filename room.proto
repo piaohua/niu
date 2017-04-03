@@ -67,7 +67,7 @@ message SKick
 {
 	optional uint32 code   = 1 [default = 4005];//协议号
 	optional uint32 seat   = 2; //被踢的玩家座位
-	optional uint32 userid = 3; //被踢的玩家id
+	optional string userid = 3; //被踢的玩家id
 	optional uint32 result = 4; //0失败,1房主T人,2房间被解散
 	required uint32 error  = 5 [default = 0]; // 错误码 
 }
