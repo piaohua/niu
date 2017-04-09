@@ -157,6 +157,7 @@ message SGameover
 	required uint32   round   = 3;//剩余牌局数
 	repeated RoomOver data    = 4;//结算
 	repeated RoomScore score  = 5;//结算,百人场个人输赢
+	repeated OverList  list   = 6;//总结算
 }
 
 //------------------
@@ -194,4 +195,19 @@ message SVoteResult
 {
 	optional uint32 code = 1 [default = 4018];//协议号
 	required uint32 vote = 2; //0半数通过马上解散房间,1半数以上不通过终止解散房间
+}
+
+//------------------
+
+// 个人牌局记录,默认最近30场
+message CGameRecord
+{
+	optional uint32 code = 1 [default = 4020];//协议号
+	required uint32 page = 2; //页数,每页30,默认发0最近30场
+}
+
+message SGameRecord
+{
+	optional uint32 code = 1 [default = 4020];//协议号
+	repeated RecordList list = 2; //
 }

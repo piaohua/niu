@@ -74,10 +74,38 @@ message RoomScore
 	required int32  score   =3;//当局输赢
 }
 
+// 结算数据
+message OverList
+{
+	required uint32 seat   =1; //玩家座位号
+	required string userid =2; //玩家ID
+	repeated uint32 cards  =3; //玩家手牌
+	required uint32 value  =4; //牌力
+	required uint32 round  =5; //第几轮
+	optional int32  score  =6; //输赢数量
+	required uint32 dealer =7; //庄家seat
+	required uint32 bets   =8; //下注倍数
+}
+
 // 投票信息
 message RoomVote
 {
 	required uint32 seat    =1;//发起投票的玩家座位号
 	repeated uint32 agree   =2;//同意
 	repeated uint32 disagree=3;//不同意
+}
+
+//获取玩家的私人房间记录
+message RecordList
+{
+	required uint32 roomid    = 1;  //牌局id
+	required uint32 rtype     = 2;  //room type
+	required string rname     = 3;  //room name
+    required uint32 ante      = 4;  //房间底分
+	required uint32 count     = 5;  //当前房间限制玩家数量
+	required string invitecode= 6;  //房间邀请码
+    required uint32 totalRound= 7;  //房间总局数
+	required string userid    = 8;  //房间房主ID
+    required uint32 ctime     = 9;  //房间创建时间
+	repeated OverList list    =10;  //房间总结算
 }
