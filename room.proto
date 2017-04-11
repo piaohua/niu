@@ -156,8 +156,7 @@ message SGameover
 	required uint32   dealer  = 2;//庄家
 	required uint32   round   = 3;//剩余牌局数
 	repeated RoomOver data    = 4;//结算
-	repeated RoomScore score  = 5;//结算,百人场个人输赢
-	repeated OverList  list   = 6;//总结算
+	repeated OverList  list   = 5;//总结算
 }
 
 //------------------
@@ -210,4 +209,65 @@ message SGameRecord
 {
 	optional uint32 code = 1 [default = 4020];//协议号
 	repeated RecordList list = 2; //
+}
+
+//------------------
+
+//3.选择上庄，下庄
+message CFreeDealer
+{
+	optional uint32 code     = 1 [default = 4022];//协议号
+	required bool   dealer   = 2;  //true上庄,false下庄
+	optional string userid   = 3;  //
+	optional string nickname = 4;  //
+	optional uint32 coin     = 5;  //上庄金额
+}
+message SFreeDealer
+{
+	optional uint32 code     = 1 [default = 4022];//协议号
+	required uint32 seat     = 2;  //位置
+	required bool   dealer   = 3;  //true上庄,false下庄
+	required string userid   = 4;  //
+	required string nickname = 5;  //
+	required uint32 coin     = 6;  //下庄金额
+	required uint32 error    = 7 [default = 0]; // 错误码 
+}
+
+//4.玩家入坐
+message CFreeSit
+{
+	optional uint32 code = 1 [default = 4024];//协议号
+	required uint32 seat = 2;  //百人场使用,下注位置,1庄家，2天，3地，4玄，5黄
+}
+message SFreeSit
+{
+	optional uint32 code     = 1 [default = 4024];//协议号
+	required uint32 seat     = 2;  //百人场使用,下注位置,1庄家，2天，3地，4玄，5黄
+	required string userid   = 3;  //
+	required string nickname = 4;  //
+	required uint32 error    = 5 [default = 0]; // 错误码
+}
+
+//4.玩家下注
+message CFreeBet
+{
+	optional uint32 code = 1 [default = 4026];//协议号
+	required uint32 value= 2;  //提交相应的值
+}
+message SFreeBet
+{
+	optional uint32 code  = 1 [default = 4026];//协议号
+	required uint32 seat  = 2;  //百人场使用,下注位置,1庄家，2天，3地，4玄，5黄
+	required uint32 value = 3;  //值
+	required uint32 error = 4 [default = 0]; // 错误码
+}
+
+// 结算广播接口，游戏结束
+message SFreeGameover
+{
+	optional uint32   code    = 1 [default = 4012];//协议号
+	required uint32   dealer  = 2;//庄家
+	required uint32   round   = 3;//剩余牌局数
+	repeated RoomOver data    = 4;//结算
+	repeated RoomScore score  = 5;//结算,百人场个人输赢
 }
