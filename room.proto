@@ -15,7 +15,7 @@ message SEnterRoom
 	repeated RoomUser  userinfo = 3;//已在房间的玩家基础信息
 	optional RoomVote  voteinfo = 4;//发起投票的信息
 	repeated RoomBets  betsinfo = 5;//下注倍数
-	required uint32    error    = 6 [default = 0]; // 错误码 
+	optional uint32    error    = 6 [default = 0]; // 错误码 
 }
 
 // 创建房间
@@ -224,7 +224,7 @@ message SEnterFreeRoom
 	required FreeRoom  roominfo = 2;//房间的详细资料
 	repeated FreeUser  userinfo = 3;//已在房间的玩家基础信息
 	repeated RoomBets  betsinfo = 5;//下注倍数
-	required uint32    error    = 6 [default = 0]; // 错误码 
+	optional uint32    error    = 6 [default = 0]; // 错误码 
 }
 
 // 其他玩家进入房间
@@ -244,8 +244,22 @@ message CFreeDealer
 message SFreeDealer
 {
 	optional uint32 code     = 1 [default = 4042];//协议号
-	repeated DealerList list = 2;  //上庄,下庄
-	required uint32 error    = 3 [default = 0]; // 错误码 
+	required bool   state    = 2;  //true上庄,false下庄
+	required string userid   = 3;  //
+	required string nickname = 4;  //
+	optional uint32 coin     = 5;  //下庄金额
+	optional uint32 error    = 6 [default = 0]; // 错误码 
+}
+
+//3.上庄列表
+message CDealerList
+{
+	optional uint32 code     = 1 [default = 4043];//协议号
+}
+message SDealerList
+{
+	optional uint32 code     = 1 [default = 4043];//协议号
+	repeated DealerList list = 2;  //上庄
 }
 
 //4.玩家入坐
@@ -260,21 +274,23 @@ message SFreeSit
 	required uint32 seat     = 2;  //位置,1庄家，2天，3地，4玄，5黄
 	required string userid   = 3;  //
 	required string nickname = 4;  //
-	required uint32 error    = 5 [default = 0]; // 错误码
+	required string photo    = 5;  //
+	optional uint32 error    = 6 [default = 0]; // 错误码
 }
 
 //4.玩家下注
 message CFreeBet
 {
 	optional uint32 code = 1 [default = 4046];//协议号
-	required uint32 value= 2;  //提交相应的值
+	required uint32 seat = 2;  //位置,1庄家，2天，3地，4玄，5黄
+	required uint32 value= 3;  //提交相应的值
 }
 message SFreeBet
 {
 	optional uint32 code  = 1 [default = 4046];//协议号
 	required uint32 seat  = 2;  //位置,1庄家，2天，3地，4玄，5黄
 	required uint32 value = 3;  //值
-	required uint32 error = 5 [default = 0]; // 错误码
+	optional uint32 error = 5 [default = 0]; // 错误码
 }
 
 // 结算广播接口，游戏开始
@@ -282,8 +298,8 @@ message SFreeGamestart
 {
 	optional uint32 code    = 1 [default = 4048];//协议号
 	required uint32 state   = 2;//房间状态
-	required uint32 dealer  = 2;//庄家
-	required uint32 coin    = 3;//庄家金额
+	required uint32 dealer  = 3;//庄家
+	required uint32 coin    = 4;//庄家金额
 }
 
 // 结算广播接口，游戏结束
