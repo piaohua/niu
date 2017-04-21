@@ -215,11 +215,11 @@ message SGameRecord
 
 // 进入房间
 message CEnterFreeRoom
-{ 
+{
 	optional uint32 code        = 1 [default = 4040];//协议号
 }
 message SEnterFreeRoom
-{ 
+{
 	optional uint32    code     = 1 [default = 4040];//协议号
 	required FreeRoom  roominfo = 2;//房间的详细资料
 	repeated FreeUser  userinfo = 3;//已在房间的玩家基础信息
@@ -245,10 +245,11 @@ message SFreeDealer
 {
 	optional uint32 code     = 1 [default = 4042];//协议号
 	required bool   state    = 2;  //true上庄,false下庄
-	required string userid   = 3;  //
-	required string nickname = 4;  //
-	optional uint32 coin     = 5;  //下庄金额
-	optional uint32 error    = 6 [default = 0]; // 错误码 
+	required string dealer   = 3;  //庄家
+	required string userid   = 4;  //申请上庄玩家
+	required string nickname = 5;  //昵称
+	optional uint32 coin     = 6;  //上/下庄金额
+	optional uint32 error    = 7 [default = 0]; // 错误码 
 }
 
 //3.上庄列表
@@ -260,22 +261,26 @@ message SDealerList
 {
 	optional uint32 code     = 1 [default = 4043];//协议号
 	repeated DealerList list = 2;  //上庄
+	optional uint32 error    = 6 [default = 0]; // 错误码 
 }
 
-//4.玩家入坐
+//4.玩家入坐,站起
 message CFreeSit
 {
 	optional uint32 code = 1 [default = 4044];//协议号
-	required uint32 seat = 2;  //位置,1庄家，2天，3地，4玄，5黄
+	required bool  state = 2;  //true坐下,false站起
+	required uint32 seat = 3;  //位置,8个位置(1~8)
 }
 message SFreeSit
 {
 	optional uint32 code     = 1 [default = 4044];//协议号
-	required uint32 seat     = 2;  //位置,1庄家，2天，3地，4玄，5黄
-	required string userid   = 3;  //
-	required string nickname = 4;  //
-	required string photo    = 5;  //
-	optional uint32 error    = 6 [default = 0]; // 错误码
+	required bool   state    = 2;  //true坐下,false站起
+	required uint32 seat     = 3;  //位置
+	required string userid   = 4;  //
+	required string nickname = 5;  //
+	required string photo    = 6;  //
+	required uint32 coin     = 7;  //
+	optional uint32 error    = 8 [default = 0]; // 错误码
 }
 
 //4.玩家下注
@@ -288,8 +293,9 @@ message CFreeBet
 message SFreeBet
 {
 	optional uint32 code  = 1 [default = 4046];//协议号
-	required uint32 seat  = 2;  //位置,1庄家，2天，3地，4玄，5黄
-	required uint32 value = 3;  //值
+	required uint32 seat  = 2;  //位置,下注者位置(1-8)
+	required uint32 beseat= 3;  //下注的位置2天，3地，4玄，5黄
+	required uint32 value = 4;  //值
 	optional uint32 error = 5 [default = 0]; // 错误码
 }
 
@@ -298,18 +304,18 @@ message SFreeGamestart
 {
 	optional uint32 code    = 1 [default = 4048];//协议号
 	required uint32 state   = 2;//房间状态
-	required uint32 dealer  = 3;//庄家
+	required string dealer  = 3;//庄家
 	required uint32 coin    = 4;//庄家金额
 }
 
 // 结算广播接口，游戏结束
 message SFreeGameover
 {
-	optional uint32   code    = 1 [default = 4048];//协议号
-	required uint32   state   = 2;//房间状态
-	required uint32   dealer  = 3;//庄家
-	required uint32   coin    = 4;//庄家金额
-	required uint32   pond    = 5;//奖池
-	repeated RoomOver data    = 6;//结算
-	repeated RoomScore score  = 7;//结算,百人场个人输赢
+	optional uint32       code    = 1 [default = 4048];//协议号
+	required uint32       state   = 2;//房间状态
+	required string       dealer  = 3;//庄家
+	required uint32       coin    = 4;//庄家金额
+	required uint32       pond    = 5;//奖池
+	repeated FreeRoomOver data    = 6;//结算
+	repeated RoomScore    list    = 7;//闲家总结果
 }

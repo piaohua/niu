@@ -12,7 +12,7 @@ message UserData
 	required uint32 coin      =6;//金币
 	required uint32 diamond   =7;//钻石
 	required uint32 roomtype  =8;//所在房间类型id
-	required uint32 roomid    =9;//所在房间id
+	required string roomid    =9;//所在房间id
 	required string invitecode=10;//所在房间邀请码
 }
 
@@ -36,7 +36,7 @@ message RoomUser
 // 房间数据
 message RoomData
 {
-	required uint32 roomid    = 1;  //牌局id
+	required string roomid    = 1;  //牌局id
 	required uint32 rtype     = 2;  //room type
 	required string rname     = 3;  //room name
 	required uint32 expire    = 4;  //牌局设定的时间（牌局存在的时间）
@@ -72,7 +72,7 @@ message FreeUser
 // 房间数据
 message FreeRoom
 {
-	required uint32 roomid    = 1;  //牌局id
+	required string roomid    = 1;  //牌局id
 	required uint32 rtype     = 2;  //room type
 	required string rname     = 3;  //room name
 	required uint32 count     = 4;  //当前房间限制玩家数量
@@ -83,7 +83,7 @@ message FreeRoom
 	required uint32 state     = 9;  //房间状态,0准备中,1游戏中
 }
 
-// 结算数据,百人场时为5个位置1庄家，2天，3地，4玄，5黄
+// 结算数据
 message RoomOver
 {
 	required uint32 seat  =1; //玩家座位号
@@ -91,6 +91,17 @@ message RoomOver
 	required uint32 value =3; //牌力
 	required int32  total =4; //总输赢,百人场时为位置总输赢
 	optional int32  score =5; //输赢数量
+}
+
+// 结算数据,百人场时为5个位置1庄家，2天，3地，4玄，5黄
+message FreeRoomOver
+{
+	required uint32    seat  =1; //玩家座位号
+	repeated uint32    cards =2; //玩家手牌
+	required uint32    value =3; //牌力
+	required int32     total =4; //下注总数量
+	optional int32     score =5; //输赢数量
+	repeated RoomScore list  =6; //位置下注个人输赢
 }
 
 // 投票信息
@@ -126,7 +137,7 @@ message RoomVote
 //获取玩家的私人房间记录
 message RecordList
 {
-	required uint32 roomid    = 1;  //牌局id
+	required string roomid    = 1;  //牌局id
 	required uint32 rtype     = 2;  //room type
 	required string rname     = 3;  //room name
     required uint32 ante      = 4;  //房间底分
@@ -141,8 +152,8 @@ message RecordList
 // 上庄列表
 message DealerList
 {
-	required bool   state    = 1;  //true上庄,false下庄
-	required string userid   = 2;  //
-	required string nickname = 3;  //
-	optional uint32 coin     = 4;  //下庄金额
+	required string userid   = 1;  //
+	required string nickname = 2;  //
+	required string photo    = 3;  //
+	optional uint32 coin     = 4;  //上庄金额
 }

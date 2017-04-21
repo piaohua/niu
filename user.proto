@@ -28,3 +28,37 @@ message SUserData
 	optional UserData data = 2;
 	required uint32 error  = 3[default=0];  // 错误码
 }
+
+// 获取虚拟货币
+message CGetCurrency
+{ 
+    optional uint32 code = 1 [default = 2004];//协议号
+}
+
+message SGetCurrency
+{ 
+    optional uint32 code     = 1 [default = 2004];//协议号
+    optional uint32 coin     = 2;//金币
+    optional uint32 diamond  = 3;//钻石
+}
+
+// 绑定代理id
+message CBuildAgent
+{
+    optional uint32 code = 1 [default = 2006];//协议号
+	required string userid =2;//用户id
+}
+
+message SBuildAgent
+{
+    optional uint32 code   = 1 [default = 2006];//协议号
+	required uint32 result = 2;//0成功,1不能绑定自己,2已经绑定,3不合格id,4不能绑定下级自己,5代理商不存在
+}
+
+message SPushCurrency
+{ 
+    optional uint32 code     = 1 [default = 2008];//协议号
+    required uint32 rtype    = 2;//1注册赠送,2开房消耗,3房间解散返还,4充值购买,5,下注,6游戏收益,7上庄，8下庄
+    optional int32  diamond  = 3;//钻石数量
+    optional int32  coin     = 4;//金币数量
+}
