@@ -295,8 +295,10 @@ message SFreeBet
 	optional uint32 code  = 1 [default = 4046];//协议号
 	required uint32 seat  = 2;  //位置,下注者位置(1-8)
 	required uint32 beseat= 3;  //下注的位置2天，3地，4玄，5黄
-	required uint32 value = 4;  //值
-	optional uint32 error = 5 [default = 0]; // 错误码
+	required uint32 value = 4;  //下注数量
+	required string userid= 5;  //下注玩家id
+	required uint32 coin  = 6;  //下注位置总数
+	optional uint32 error = 7 [default = 0]; // 错误码
 }
 
 // 结算广播接口，游戏开始
@@ -311,7 +313,7 @@ message SFreeGamestart
 // 结算广播接口，游戏结束
 message SFreeGameover
 {
-	optional uint32       code    = 1 [default = 4048];//协议号
+	optional uint32       code    = 1 [default = 4050];//协议号
 	required uint32       state   = 2;//房间状态
 	required string       dealer  = 3;//庄家
 	required uint32       coin    = 4;//庄家金额

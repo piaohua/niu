@@ -81,6 +81,7 @@ message FreeRoom
 	required uint32 coin      = 7;  //庄家上庄金额
 	required uint32 pond      = 8;  //奖池
 	required uint32 state     = 9;  //房间状态,0准备中,1游戏中
+	optional uint32 timer     =10;  //下注剩余时间
 }
 
 // 结算数据
