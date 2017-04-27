@@ -314,11 +314,13 @@ message SFreeGamestart
 // 结算广播接口，游戏结束
 message SFreeGameover
 {
-	optional uint32       code    = 1 [default = 4050];//协议号
-	required uint32       state   = 2;//房间状态
-	required string       dealer  = 3;//庄家
-	required uint32       coin    = 4;//庄家金额
-	required uint32       pond    = 5;//奖池
-	repeated FreeRoomOver data    = 6;//结算
-	repeated RoomScore    list    = 7;//闲家总结果
+	optional uint32       code          = 1 [default = 4050];//协议号
+	required uint32       state         = 2;//房间状态
+	required string       dealer        = 3;//庄家
+	required uint32       dealerNum     = 4;//可坐庄总次数
+	required uint32       leftDealerNum = 5;//剩余坐庄次数
+	required uint32       coin          = 6;//庄家金额
+	required uint32       pond          = 7;//奖池
+	repeated FreeRoomOver data          = 8;//结算
+	repeated RoomScore    list          = 9;//闲家总结果
 }

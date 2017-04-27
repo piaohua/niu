@@ -13,8 +13,9 @@ message SChatText
 {
     optional uint32 code    = 1 [default = 2003];//协议号
     optional uint32 seat    = 2;
-    optional bytes  content = 3;
-    required uint32 error   = 4 [default = 0]; // 错误码
+    optional string userid  = 3;
+    optional bytes  content = 4;
+    required uint32 error   = 5 [default = 0]; // 错误码
 }
 
 // 房间广播语音聊天
@@ -29,8 +30,9 @@ message SChatVoice
 {
     optional uint32 code    = 1 [default = 2004];//协议号
     optional uint32 seat    = 2;
-    optional bytes  content = 3;
-    required uint32 error   = 4 [default = 0]; // 错误码
+    optional string userid  = 3;
+    optional bytes  content = 4;
+    required uint32 error   = 5 [default = 0]; // 错误码
 }
 
 // 世界广播

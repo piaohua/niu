@@ -72,16 +72,18 @@ message FreeUser
 // 房间数据
 message FreeRoom
 {
-	required string roomid    = 1;  //牌局id
-	required uint32 rtype     = 2;  //room type
-	required string rname     = 3;  //room name
-	required uint32 count     = 4;  //当前房间限制玩家数量
-	required uint32 dealer    = 5;  //庄家seat
-	required string userid    = 6;  //庄家ID
-	required uint32 coin      = 7;  //庄家上庄金额
-	required uint32 pond      = 8;  //奖池
-	required uint32 state     = 9;  //房间状态,0准备中,1游戏中
-	optional uint32 timer     =10;  //下注剩余时间
+	required string roomid        = 1;//牌局id
+	required uint32 rtype         = 2;//room type
+	required string rname         = 3;//room name
+	required uint32 count         = 4;//当前房间限制玩家数量
+	required uint32 dealer        = 5;//庄家seat
+	required string userid        = 6;//庄家ID
+	required uint32 coin          = 7;//庄家上庄金额
+	required uint32 pond          = 8;//奖池
+	required uint32 state         = 9;//房间状态,0准备中,1游戏中
+	optional uint32 timer         =10;//下注剩余时间
+	required uint32 dealerNum     =11;//可坐庄总次数
+	required uint32 leftDealerNum =12;//剩余坐庄次数
 }
 
 // 结算数据
