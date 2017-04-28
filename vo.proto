@@ -114,6 +114,7 @@ message RoomScore
 	required string userid  =2;//玩家ID
 	required int32  score   =3;//当局输赢
 	required uint32 pond    =4;//分到奖池金额
+	optional uint32 coin    =5;//个人总剩余
 }
 
 // 结算数据

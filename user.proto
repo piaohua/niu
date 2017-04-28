@@ -40,6 +40,7 @@ message SGetCurrency
     optional uint32 code     = 1 [default = 2004];//协议号
     optional uint32 coin     = 2;//金币
     optional uint32 diamond  = 3;//钻石
+    optional uint32 roomcard = 4;//房卡
 }
 
 // 绑定代理id
