@@ -202,7 +202,7 @@ message SVoteResult
 message CGameRecord
 {
 	optional uint32 code = 1 [default = 4020];//协议号
-	required uint32 page = 2; //页数,每页30,默认发0最近30场
+	required uint32 page = 2; //页数,每页30,默认发1最近30场
 }
 
 message SGameRecord
@@ -238,13 +238,13 @@ message SFreeCamein
 message CFreeDealer
 {
 	optional uint32 code     = 1 [default = 4042];//协议号
-	required bool   state    = 2;  //true上庄,false下庄
+	optional uint32 state    = 2;  //0下庄 1上庄 2补庄
 	optional uint32 coin     = 3;  //上庄金额
 }
 message SFreeDealer
 {
 	optional uint32 code     = 1 [default = 4042];//协议号
-	required bool   state    = 2;  //true上庄,false下庄
+	optional uint32 state    = 2;  //0下庄 1上庄 2补庄
 	required string dealer   = 3;  //庄家
 	required string userid   = 4;  //申请上庄玩家
 	required string nickname = 5;  //昵称
@@ -261,7 +261,7 @@ message SDealerList
 {
 	optional uint32 code     = 1 [default = 4043];//协议号
 	repeated DealerList list = 2;  //上庄
-	optional uint32 error    = 6 [default = 0]; // 错误码 
+	optional uint32 error    = 3 [default = 0]; // 错误码 
 }
 
 //4.玩家入坐,站起
