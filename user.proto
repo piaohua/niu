@@ -72,16 +72,17 @@ message SPushCurrency
 message CBank
 {
     optional uint32 code   = 1 [default = 1030];//协议号
-	required uint32 rtype  = 2;//1存入,2取出,3赠送
-	required uint32 amount = 3;//金额
+	required uint32 rtype  = 2;//1存入,2取出,3赠送,4查询存款余额
+	optional uint32 amount = 3;//操作金额
 	optional string userid = 4;//用户id
 }
 
 message SBank
 {
-    optional uint32 code   = 1 [default = 1030];//协议号
-	required uint32 rtype  = 2;//1存入,2取出,3赠送
-	required uint32 amount = 3;//金额
-	optional string userid = 4;//用户id
-	optional uint32 error  = 5[default=0];  // 错误码
+    optional uint32 code    = 1 [default = 1030];//协议号
+	required uint32 rtype   = 2;//1存入,2取出,3赠送,4查询存款余额
+	optional uint32 amount  = 3;//操作金额
+	optional string userid  = 4;//用户id
+	optional uint32 balance = 5;//账户余额
+	optional uint32 error   = 6[default=0];  // 错误码
 }

@@ -16,6 +16,7 @@ message UserData
 	required string invitecode=10;//所在房间邀请码
 	optional string agent     =11;//绑定的代理ID
 	optional uint32 give      =12;//当日已赠送金额
+	optional uint32 bank      =13;//银行存款
 }
 
 // 玩家的基础数据
