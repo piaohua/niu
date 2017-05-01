@@ -14,6 +14,8 @@ message UserData
 	required uint32 roomtype  =8;//所在房间类型id
 	required string roomid    =9;//所在房间id
 	required string invitecode=10;//所在房间邀请码
+	optional string agent     =11;//绑定的代理ID
+	optional uint32 give      =12;//当日已赠送金额
 }
 
 // 玩家的基础数据

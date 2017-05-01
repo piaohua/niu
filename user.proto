@@ -5,12 +5,12 @@ import "vo.proto";
 // 获取游戏全局配置数据
 message CConfig
 {
-	optional uint32 code = 1 [default = 2000];//协议号
+	optional uint32 code = 1 [default = 1020];//协议号
 }
 
 message SConfig
 {
-	optional uint32 code     = 1 [default=2000];//协议号
+	optional uint32 code     = 1 [default=1020];//协议号
 	required string imageurl = 2;  // 玩家头像图片服务器地址和端口
 	required string version  = 3;  // 版本号
 }
@@ -18,13 +18,13 @@ message SConfig
 // 获取玩家的数据
 message CUserData
 {
-	optional uint32 code   = 1 [default=2002];//协议号
+	optional uint32 code   = 1 [default=1022];//协议号
 	required string userid = 2;//用户id
 }
 
 message SUserData
 {
-	optional uint32 code   = 1 [default=2002];//协议号
+	optional uint32 code   = 1 [default=1022];//协议号
 	optional UserData data = 2;
 	required uint32 error  = 3[default=0];  // 错误码
 }
@@ -32,12 +32,12 @@ message SUserData
 // 获取虚拟货币
 message CGetCurrency
 { 
-    optional uint32 code = 1 [default = 2004];//协议号
+    optional uint32 code = 1 [default = 1024];//协议号
 }
 
 message SGetCurrency
 { 
-    optional uint32 code     = 1 [default = 2004];//协议号
+    optional uint32 code     = 1 [default = 1024];//协议号
     optional uint32 coin     = 2;//金币
     optional uint32 diamond  = 3;//钻石
     optional uint32 roomcard = 4;//房卡
@@ -46,20 +46,42 @@ message SGetCurrency
 // 绑定代理id
 message CBuildAgent
 {
-    optional uint32 code = 1 [default = 2006];//协议号
+    optional uint32 code = 1 [default = 1026];//协议号
 	required string userid =2;//用户id
 }
 
 message SBuildAgent
 {
-    optional uint32 code   = 1 [default = 2006];//协议号
+    optional uint32 code   = 1 [default = 1026];//协议号
 	required uint32 result = 2;//0成功,1不能绑定自己,2已经绑定,3不合格id,4不能绑定下级自己,5代理商不存在
 }
 
+//1注册赠送,2开房消耗,3房间解散返还,
+//4充值购买,5,下注,6游戏收益,7上庄，
+//8下庄, 9后台操作,10玩家赠送,11破产补助
+//12存款,13取款,14取款抽成,15赠送,16赠送抽成
 message SPushCurrency
 { 
-    optional uint32 code     = 1 [default = 2008];//协议号
-    required uint32 rtype    = 2;//1注册赠送,2开房消耗,3房间解散返还,4充值购买,5,下注,6游戏收益,7上庄，8下庄
+    optional uint32 code     = 1 [default = 1028];//协议号
+    required uint32 rtype    = 2;//类型
     optional int32  diamond  = 3;//钻石数量
     optional int32  coin     = 4;//金币数量
+}
+
+// bank
+message CBank
+{
+    optional uint32 code   = 1 [default = 1030];//协议号
+	required uint32 rtype  = 2;//1存入,2取出,3赠送
+	required uint32 amount = 3;//金额
+	optional string userid = 4;//用户id
+}
+
+message SBank
+{
+    optional uint32 code   = 1 [default = 1030];//协议号
+	required uint32 rtype  = 2;//1存入,2取出,3赠送
+	required uint32 amount = 3;//金额
+	optional string userid = 4;//用户id
+	optional uint32 error  = 5[default=0];  // 错误码
 }
