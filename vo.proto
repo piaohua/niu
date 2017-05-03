@@ -69,7 +69,8 @@ message FreeUser
 	required uint32 coin     =7;//金币
 	required uint32 diamond  =8;//钻石
 	required bool   ready    =9;//玩家de状态,true游戏中
-	optional uint32 bet      =10;//玩家下注0下注中,n下注额度
+	optional uint32 bet      =10;//玩家下注0下注中,n下注总额度
+	repeated RoomBets bets   =11;//个人各位置对应下注额
 }
 
 // 房间数据
