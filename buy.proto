@@ -11,8 +11,8 @@ message CBuy
 message SBuy
 {
     optional uint32 code   = 1 [default = 3000];//协议号
-    required uint32 result = 2;  // 0购买成功,1失败
-    required uint32 error  = 3 [default = 0]; // 错误码
+    optional uint32 result = 2;  // 0购买成功,1失败
+    optional uint32 error  = 3 [default = 0]; // 错误码
 }
 
 // 微信支付 - 下单
@@ -26,10 +26,10 @@ message CWxpayOrder
 message SWxpayOrder
 {
     optional uint32 code    = 1 [default = 3002];//协议号
-    required uint32 id      = 2;  // 购买商品ID
-    required string payreq  = 3;  // 调起支付接口请求参数
-    required string orderid = 4;  // 订单号
-    required uint32 error   = 5 [default = 0]; // 错误码
+    optional uint32 id      = 2;  // 购买商品ID
+    optional string payreq  = 3;  // 调起支付接口请求参数
+    optional string orderid = 4;  // 订单号
+    optional uint32 error   = 5 [default = 0]; // 错误码
 }
 
 // 微信支付 - 查询
@@ -42,7 +42,7 @@ message CWxpayQuery
 message SWxpayQuery
 {
     optional uint32 code    = 1 [default = 3004];//协议号
-    required string orderid = 2;  // 订单号
-    required uint32 result  = 3;  // 0支付成功,1发货中,2订单号不存在,3支付失败
-    required uint32 error   = 4 [default = 0]; // 错误码
+    optional string orderid = 2;  // 订单号
+    optional uint32 result  = 3;  // 0支付成功,1发货中,2订单号不存在,3支付失败
+    optional uint32 error   = 4 [default = 0]; // 错误码
 }

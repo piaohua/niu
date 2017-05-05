@@ -13,7 +13,7 @@ message SLogin
 {
     optional uint32 code     = 1 [default=1000];//协议号
     optional string userid   = 2 ;//用户id
-    required uint32 error    = 3 ;//错误码
+    optional uint32 error    = 3 ;//错误码
 }
 
 // 注册
@@ -29,7 +29,7 @@ message SRegist
 {
     optional uint32 code   = 1 [default = 1002];//协议号
     optional string userid = 2 ;//用户id
-    required uint32 error  = 3 ;//错误码
+    optional uint32 error  = 3 ;//错误码
 }
 
 // 微信登录登陆
@@ -45,7 +45,7 @@ message SWxLogin
     optional uint32 code    = 1 [default = 1004];//协议号
     optional string userid  = 2 ;// 用户id
     optional string token   = 3 ;// 返回access_token
-    required uint32 error   = 4 ;// 错误码
+    optional uint32 error   = 4 ;// 错误码
 }
 
 message SLoginOut

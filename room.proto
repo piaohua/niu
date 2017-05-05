@@ -34,7 +34,7 @@ message SCreateRoom
 { 
 	optional uint32 code    = 1 [default = 4001];//协议号
 	optional RoomData rdata = 2; //
-	required uint32 error   = 3 [default = 0]; // 错误码 
+	optional uint32 error   = 3 [default = 0]; // 错误码 
 }
 
 // 其他玩家进入房间
@@ -54,7 +54,7 @@ message SLeave
 	optional uint32 code   = 1 [default = 4004];//协议号
 	optional uint32 seat   = 2; //玩家选择的座位号
 	optional string userid = 3; //玩家id
-	required uint32 error  = 4 [default = 0]; // 错误码 
+	optional uint32 error  = 4 [default = 0]; // 错误码 
 }
 
 // 踢人
@@ -69,7 +69,7 @@ message SKick
 	optional uint32 seat   = 2; //被踢的玩家座位
 	optional string userid = 3; //被踢的玩家id
 	optional uint32 result = 4; //0失败,1房主T人,2房间被解散
-	required uint32 error  = 5 [default = 0]; // 错误码 
+	optional uint32 error  = 5 [default = 0]; // 错误码 
 }
 
 //1.准备游戏(准备完成开始游戏时状态切为发牌)
@@ -83,7 +83,7 @@ message SReady
 	optional uint32 code = 1 [default = 4006];//协议号
 	optional uint32 seat = 2; //准备游戏的玩家座位
 	optional bool   ready= 3; //true准备,false取消
-	required uint32 error= 4 [default = 0]; // 错误码 
+	optional uint32 error= 4 [default = 0]; // 错误码 
 }
 
 //2.发牌(全部准备后或达到开始条件,发完状态切为抢庄)
@@ -106,7 +106,7 @@ message SDealer
 	optional uint32 code  = 1 [default = 4008];//协议号
 	required uint32 seat  = 2;  //位置
 	required bool   dealer= 3;  //true抢庄,false不抢
-	required uint32 error = 4 [default = 0]; // 错误码 
+	optional uint32 error = 4 [default = 0]; // 错误码 
 }
 
 //完成抢庄,推送庄家位置
@@ -129,7 +129,7 @@ message SBet
 	optional uint32 seat  = 2;  //玩家的座位号
 	optional uint32 seatbet = 3;  //百人场使用,下注位置,1庄家，2天，3地，4玄，5黄
 	required uint32 value = 4;  //值
-	required uint32 error = 5 [default = 0]; // 错误码
+	optional uint32 error = 5 [default = 0]; // 错误码
 }
 
 //5.玩家组合牌提交
@@ -146,7 +146,7 @@ message SNiu
 	optional uint32 seat  = 2;  //玩家的座位号
 	required uint32 value = 3;  //提交相应的值,0为无
 	repeated uint32 cards = 4;  //手牌5张,前3张为牛,后2张为点
-	required uint32 error = 5 [default = 0]; // 错误码
+	optional uint32 error = 5 [default = 0]; // 错误码
 }
 
 // 结算广播接口，游戏结束
