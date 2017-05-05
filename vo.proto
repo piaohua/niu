@@ -88,6 +88,7 @@ message FreeRoom
 	optional uint32 timer         =10;//下注剩余时间
 	required uint32 dealerNum     =11;//可坐庄总次数
 	required uint32 leftDealerNum =12;//剩余坐庄次数
+	required string photo         =13;//庄家头像
 }
 
 // 结算数据

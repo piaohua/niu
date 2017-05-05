@@ -310,6 +310,8 @@ message SFreeGamestart
 	required string dealer  = 3;//庄家
 	required uint32 coin    = 4;//庄家金额
 	required string photo   = 5;//庄家头像
+	required uint32 dealerNum     = 6;//可坐庄总次数
+	required uint32 leftDealerNum = 7;//剩余坐庄次数
 }
 
 // 结算广播接口，游戏结束
