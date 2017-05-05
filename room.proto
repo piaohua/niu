@@ -309,6 +309,7 @@ message SFreeGamestart
 	required uint32 state   = 2;//房间状态
 	required string dealer  = 3;//庄家
 	required uint32 coin    = 4;//庄家金额
+	required string photo   = 5;//庄家头像
 }
 
 // 结算广播接口，游戏结束
