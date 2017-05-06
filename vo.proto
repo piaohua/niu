@@ -167,6 +167,12 @@ message DealerList
 	optional uint32 coin     = 4;  //上庄金额
 }
 
+message FreeTrendList
+{
+	required uint32    round =1;//20局的排序,1为最近一局
+	repeated FreeTrend list  =2;
+}
+
 message FreeTrend
 {
 	required string seat = 1;  //天 地 玄 黄 座位号 2,3,4,5

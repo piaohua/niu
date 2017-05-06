@@ -337,6 +337,6 @@ message CFreeTrend
 // 百人牛牛趋势
 message SFreeTrend
 {
-	optional uint32       code          = 1 [default = 4051];//协议号
-	repeated FreeTrend    list          = 2;//各位置输赢
+	optional uint32        code          = 1 [default = 4051];//协议号
+	repeated FreeTrendList list          = 2;//各位置输赢
 }
