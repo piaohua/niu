@@ -327,3 +327,16 @@ message SFreeGameover
 	repeated FreeRoomOver data          = 8;//结算
 	repeated RoomScore    list          = 9;//闲家总结果
 }
+
+// 百人牛牛趋势
+message CFreeTrend
+{
+	optional uint32       code          = 1 [default = 4051];//协议号
+}
+
+// 百人牛牛趋势
+message SFreeTrend
+{
+	optional uint32       code          = 1 [default = 4051];//协议号
+	repeated FreeTrend    list          = 2;//各位置输赢
+}

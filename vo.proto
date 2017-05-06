@@ -166,3 +166,9 @@ message DealerList
 	required string photo    = 3;  //
 	optional uint32 coin     = 4;  //上庄金额
 }
+
+message FreeTrend
+{
+	required string seat = 1;  //天 地 玄 黄 座位号 2,3,4,5
+	required bool   win  = 2;  //true赢 false输  只判断牌型大小输赢
+}
