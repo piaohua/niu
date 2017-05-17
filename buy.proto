@@ -63,7 +63,7 @@ message SShop
 // 商品
 message Shop
 {
-    required string id     = 1; //购买ID
+    required uint32 id     = 1; //购买ID
     required uint32 Status = 2; //物品状态,1=热卖
     required uint32 Propid = 3; //兑换的物品,1=钻石
     required uint32 Payway = 4; //支付方式,1=RMB
