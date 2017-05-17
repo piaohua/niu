@@ -39,7 +39,27 @@ message SChatVoice
 message SBroadcast
 {
     optional uint32 code    = 1 [default = 2006];//协议号
-    required uint32 rtype   = 2;//消息类型 TODO
+    required uint32 rtype   = 2;//消息类型 1.活动公告,2.世界广播
     required uint32 num     = 3;//1=播放1次,2=播放2次
     required bytes  content = 4;//消息内容
+}
+
+// 公告列表
+message CNotice
+{
+    optional uint32 code = 1 [default = 2008];//协议号
+}
+
+message SNotice
+{
+    optional uint32 code = 1 [default = 2008];//协议号
+    repeated Notice list = 2;
+    optional uint32 error = 3 [default = 0]; // 错误码
+}
+
+message Notice
+{
+    required uint32 rtype   = 1;//消息类型 1.活动公告
+    required uint32 acttype = 2;//操作类型 1.活动公告
+    required bytes  content = 3;//消息内容
 }
