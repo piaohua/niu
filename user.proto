@@ -53,7 +53,7 @@ message CBuildAgent
 message SBuildAgent
 {
     optional uint32 code   = 1 [default = 1026];//协议号
-	required uint32 result = 2;//0成功,1不能绑定自己,2已经绑定,3不合格id,4不能绑定下级自己,5代理商不存在
+	required uint32 result = 2;//0成功,1不能绑定自己,2已经绑定,3不合格id,4已经是代理商不能绑定,5代理商不存在
 }
 
 //1注册赠送,2开房消耗,3房间解散返还,

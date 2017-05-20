@@ -49,6 +49,7 @@ message RoomData
 	required uint32 round     = 8;  //剩余牌局数
 	required string userid    = 9;  //房主ID
 	required uint32 state     =10;  //房间状态,0准备中,1抢庄中,2下注中
+    optional uint32 ante      =11;  //房间底分
 }
 
 // 下注信息
