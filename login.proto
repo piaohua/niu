@@ -38,6 +38,7 @@ message CWxLogin
     optional uint32 code    = 1 [default = 1004];//协议号
     optional string wxcode  = 2; //微信code
     optional string token   = 3; //token登录
+    optional uint32 type    = 4; //登录
 }
 
 message SWxLogin
