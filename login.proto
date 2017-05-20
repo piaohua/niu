@@ -7,6 +7,7 @@ message CLogin
     optional uint32 code     = 1 [default = 1000];//协议号
     required string phone    = 2;  // 手机
     required string password = 3;  // 密码 (MD5)
+    optional uint32 type     = 4; //登录
 }
 
 message SLogin
@@ -23,6 +24,7 @@ message CRegist
     optional string nickname = 2;//昵称
     required string phone    = 3;//手机号
     required string password = 4;//密码(md5)
+    optional uint32 type     = 5; //登录
 }
 
 message SRegist
