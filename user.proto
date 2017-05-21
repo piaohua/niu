@@ -86,3 +86,16 @@ message SBank
 	optional uint32 balance = 5;//账户余额
 	optional uint32 error   = 6[default=0];  // 错误码
 }
+
+message CPing
+{
+    optional uint32 code = 1 [default = 1050];//协议号
+    optional uint32 time = 2;//时间截
+}
+
+message SPing
+{
+    optional uint32 code = 1 [default = 1050];//协议号
+    optional uint32 time = 2;//时间截
+    optional uint32 error= 3 [default = 0]; // 错误码 ,0:正常
+}
