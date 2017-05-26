@@ -99,3 +99,60 @@ message SPing
     optional uint32 time = 2;//时间截
     optional uint32 error= 3 [default = 0]; // 错误码 ,0:正常
 }
+
+message CBankrupts
+{
+    optional uint32 code = 1 [default = 1052];//协议号
+}
+
+message SBankrupts
+{
+    optional uint32 code     = 1 [default = 1052];//协议号
+    optional uint32 relieve  = 2;//剩余救济次数
+    optional uint32 bankrupt = 3;//已经破产次数
+    repeated Prize  list     = 4;//奖品
+    optional uint32 error    = 5 [default = 0]; // 错误码 ,0:正常
+}
+
+message CPrizeList
+{
+    optional uint32 code = 1 [default = 1053];//协议号
+}
+
+message SPrizeList
+{
+    optional uint32 code   = 1 [default = 1053];//协议号
+    optional uint32 id     = 2;//id
+    repeated Prize  list   = 3;//奖品
+    optional uint32 error  = 4 [default = 0]; // 错误码 ,0:正常
+}
+
+message CPrizeDraw
+{
+    optional uint32 code = 1 [default = 1054];//协议号
+}
+
+message SPrizeDraw
+{
+    optional uint32 code      = 1 [default = 1054];//协议号
+    optional uint32 leftdraw  = 2;//剩余抽奖次数
+    optional uint32 prizedraw = 3;//已经抽奖次数
+    repeated Prize  list      = 4;//奖品
+    optional uint32 error     = 5 [default = 0]; // 错误码 ,0:正常
+}
+
+message CPrizeBox
+{
+    optional uint32 code  = 1 [default = 1055];//协议号
+    optional uint32 state = 2;//1=获取信息2=领取
+}
+
+message SPrizeBox
+{
+    optional uint32 code      = 1 [default = 1055];//协议号
+    optional uint32 time      = 2;//剩余时间;0表示本次完成,可以领取
+    repeated Prize  list      = 3;//奖品
+    optional uint32 nexttime  = 4;//下阶段时间;0表示全部完成
+    repeated Prize  nextlist  = 5;//奖品
+    optional uint32 error     = 6 [default = 0]; // 错误码 ,0:正常
+}

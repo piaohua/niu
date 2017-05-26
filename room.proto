@@ -100,13 +100,15 @@ message CDealer
 {
 	optional uint32 code  = 1 [default = 4008];//协议号
 	required bool   dealer= 2;  //true抢庄,false不抢
+	optional uint32 num   = 3;  //抢庄倍数
 }
 message SDealer
 {
 	optional uint32 code  = 1 [default = 4008];//协议号
 	required uint32 seat  = 2;  //位置
 	required bool   dealer= 3;  //true抢庄,false不抢
-	optional uint32 error = 4 [default = 0]; // 错误码 
+	optional uint32 num   = 4;  //抢庄倍数
+	optional uint32 error = 5 [default = 0]; // 错误码 
 }
 
 //完成抢庄,推送庄家位置

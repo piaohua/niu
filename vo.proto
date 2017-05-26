@@ -17,6 +17,24 @@ message UserData
 	optional string agent     =11;//绑定的代理ID
 	optional uint32 give      =12;//当日已赠送金额
 	optional uint32 bank      =13;//银行存款
+	optional Activity data    =14;//活动数据
+}
+
+// 玩家的活动数据
+message Activity
+{
+	optional uint32 firstpay   =1;//首充1没有完成,0已经完成
+	optional uint32 relieve    =2;//剩余救济次数
+	optional uint32 bankrupt   =3;//已经破产次数
+	optional uint32 prizedraw  =4;//已经抽奖次数
+	optional uint32 leftdraw   =5;//剩余抽奖次数
+}
+
+// 奖品
+message Prize
+{
+    optional uint32 rtype     = 1;//奖品类型
+    optional uint32 number    = 2;//奖品数量
 }
 
 // 玩家的基础数据
@@ -34,6 +52,7 @@ message RoomUser
 	required uint32 dealer   =11;//玩家抢庄0抢庄中,1抢庄,2不抢
 	optional uint32 bet      =12;//玩家下注0下注中,n下注额度
 	repeated uint32 cards    =13;//玩家手牌
+	optional uint32 num      =14;//玩家抢庄倍数
 }
 
 // 房间数据
