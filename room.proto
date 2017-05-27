@@ -28,6 +28,7 @@ message CCreateRoom
 	required uint32 round   = 5;  //牌局数
 	required uint32 payment = 6;  //付费方式0=房主付费,1=AA付费 
 	required uint32 count   = 7;  //人数限制
+    optional uint32 chat    = 8;  //1对讲机 2语音 3语音转文字
 }
 // 返回房间数据,
 message SCreateRoom

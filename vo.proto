@@ -33,8 +33,9 @@ message Activity
 // 奖品
 message Prize
 {
-    optional uint32 rtype     = 1;//奖品类型
-    optional uint32 number    = 2;//奖品数量
+    optional string id        = 1;//id
+    optional uint32 rtype     = 2;//奖品类型
+    optional uint32 number    = 3;//奖品数量
 }
 
 // 玩家的基础数据
@@ -69,6 +70,7 @@ message RoomData
 	required string userid    = 9;  //房主ID
 	required uint32 state     =10;  //房间状态,0准备中,1抢庄中,2下注中
     optional uint32 ante      =11;  //房间底分
+    optional uint32 chat      =12;  //1对讲机 2语音 3语音转文字
 }
 
 // 下注信息
@@ -153,6 +155,8 @@ message OverList
 	optional int32  score  =6; //输赢数量
 	required uint32 dealer =7; //庄家seat
 	required uint32 bets   =8; //下注倍数
+	optional string nickname =9; //
+	optional string photo    =10; //
 }
 
 // 投票信息

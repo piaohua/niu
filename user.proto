@@ -122,9 +122,8 @@ message CPrizeList
 message SPrizeList
 {
     optional uint32 code   = 1 [default = 1053];//协议号
-    optional uint32 id     = 2;//id
-    repeated Prize  list   = 3;//奖品
-    optional uint32 error  = 4 [default = 0]; // 错误码 ,0:正常
+    repeated Prize  list   = 2;//奖品
+    optional uint32 error  = 3 [default = 0]; // 错误码 ,0:正常
 }
 
 message CPrizeDraw
@@ -150,9 +149,9 @@ message CPrizeBox
 message SPrizeBox
 {
     optional uint32 code      = 1 [default = 1055];//协议号
-    optional uint32 time      = 2;//剩余时间;0表示本次完成,可以领取
-    repeated Prize  list      = 3;//奖品
-    optional uint32 nexttime  = 4;//下阶段时间;0表示全部完成
-    repeated Prize  nextlist  = 5;//奖品
+    optional uint32 time      = 2;//已经在线时长
+    optional uint32 duration  = 3;//所需在线时长
+    optional uint32 state     = 4;//1=可以领取
+    repeated Prize  list      = 5;//奖品
     optional uint32 error     = 6 [default = 0]; // 错误码 ,0:正常
 }
