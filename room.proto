@@ -139,7 +139,7 @@ message SBet
 message CNiu
 {
 	optional uint32 code = 1 [default = 4011];//协议号
-	required uint32 value= 2; //提交相应的值,0为无
+	optional uint32 value= 2; //提交相应的值,0为无
 	repeated uint32 cards= 3; //手牌5张,前3张为牛,后2张为点
 }
 //广播提交结果
@@ -147,7 +147,7 @@ message SNiu
 {
 	optional uint32 code  = 1 [default = 4011];//协议号
 	optional uint32 seat  = 2;  //玩家的座位号
-	required uint32 value = 3;  //提交相应的值,0为无
+	optional uint32 value = 3;  //提交相应的值,0为无
 	repeated uint32 cards = 4;  //手牌5张,前3张为牛,后2张为点
 	optional uint32 error = 5 [default = 0]; // 错误码
 }
