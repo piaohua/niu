@@ -54,6 +54,7 @@ message RoomUser
 	optional uint32 bet      =12;//玩家下注0下注中,n下注额度
 	repeated uint32 cards    =13;//玩家手牌
 	optional uint32 num      =14;//玩家抢庄倍数
+	optional bool   niu      =15;//是否选牛
 }
 
 // 房间数据
