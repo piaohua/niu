@@ -47,6 +47,21 @@ message SWxpayQuery
     optional uint32 error   = 4 [default = 0]; // 错误码
 }
 
+//  苹果支付
+message CApplePay
+{
+    optional uint32 code    = 1 [default = 3006];//协议号
+    required uint32 id      = 2; // 购买商品ID
+    required string receipt = 3; //客户端提交上来的苹果支付验证数据
+}
+
+message SApplePay
+{
+    optional uint32 code    = 1 [default = 3006];//协议号
+    required uint32 id      = 2;  // 购买商品ID
+    optional uint32 error   = 3 [default = 0]; // 错误码
+}
+
 // 商城
 message CShop
 {
