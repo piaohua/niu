@@ -343,3 +343,21 @@ message SFreeTrend
 	optional uint32        code          = 1 [default = 4051];//协议号
 	repeated FreeTrendList list          = 2;//各位置输赢
 }
+
+//------------------
+
+// 进入房间
+message CEnterClassicRoom
+{
+	optional uint32 code        = 1 [default = 4060];//协议号
+	optional uint32 id          = 2;//id
+}
+
+message SEnterClassicRoom
+{
+    optional uint32    code     = 1 [default = 4060];//协议号
+    optional RoomData  roominfo = 2;//房间的详细资料
+    repeated RoomUser  userinfo = 3;//已在房间的玩家基础信息
+    repeated RoomBets  betsinfo = 4;//下注倍数
+    optional uint32    error    = 5 [default = 0]; // 错误码 
+}

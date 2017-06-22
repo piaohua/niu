@@ -156,3 +156,16 @@ message SPrizeBox
     repeated Prize  next      = 6;//奖品
     optional uint32 error     = 7 [default = 0]; // 错误码 ,0:正常
 }
+
+message CClassicList
+{
+    optional uint32 code  = 1 [default = 1060];//协议号
+}
+
+message SClassicList
+{
+    optional uint32  code      = 1 [default = 1060];//协议号
+    optional uint32  state     = 2;//1=开放
+    repeated Classic list      = 3;//
+    optional uint32  error     = 4 [default = 0]; // 错误码 ,0:正常
+}

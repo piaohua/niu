@@ -38,6 +38,17 @@ message Prize
     optional uint32 number    = 3;//奖品数量
 }
 
+// 经典场
+message Classic
+{
+    optional uint32 id        = 1;//id
+    optional uint32 ptype     = 2;//玩法类型1看牌抢庄,3通比牛牛4牛牛坐庄
+    optional uint32 rtype     = 3;//房间类型1初级,2中级,3高级,4大师
+    optional uint32 ante      = 4;//房间底分
+    optional uint32 minimum   = 5;//房间最低
+    optional uint32 maximum   = 6;//房间最高0表示没限制
+}
+
 // 玩家的基础数据
 message RoomUser
 {
