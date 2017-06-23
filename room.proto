@@ -350,7 +350,7 @@ message SFreeTrend
 message CEnterClassicRoom
 {
 	optional uint32 code        = 1 [default = 4060];//协议号
-	optional uint32 id          = 2;//id
+	optional string id          = 2;//id为空自由分配
 }
 
 message SEnterClassicRoom
@@ -360,4 +360,13 @@ message SEnterClassicRoom
     repeated RoomUser  userinfo = 3;//已在房间的玩家基础信息
     repeated RoomBets  betsinfo = 4;//下注倍数
     optional uint32    error    = 5 [default = 0]; // 错误码 
+}
+
+// 结算广播接口，游戏结束
+message SClassicGameover
+{
+    optional uint32       code          = 1 [default = 4062];//协议号
+    optional uint32       state         = 2;//房间状态
+    optional uint32       dealer        = 3;//庄家
+    repeated ClassicOver  data          = 4;//结算
 }

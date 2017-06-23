@@ -41,7 +41,7 @@ message Prize
 // 经典场
 message Classic
 {
-    optional uint32 id        = 1;//id
+    optional string id        = 1;//id
     optional uint32 ptype     = 2;//玩法类型1看牌抢庄,3通比牛牛4牛牛坐庄
     optional uint32 rtype     = 3;//房间类型1初级,2中级,3高级,4大师
     optional uint32 ante      = 4;//房间底分
@@ -154,6 +154,18 @@ message RoomScore
 	required int32  score   =3;//当局输赢
 	required uint32 pond    =4;//分到奖池金额
 	optional uint32 coin    =5;//个人总剩余
+}
+
+//
+message ClassicOver
+{
+    required uint32 seat    =1;//玩家位置
+    required string userid  =2;//玩家ID
+    repeated uint32 cards   =3;//玩家手牌
+    required uint32 value   =4;//牌力
+    required uint32 bets    =5;//下注总数量
+    required int32  score   =6;//当局输赢
+    optional uint32 coin    =7;//个人总剩余
 }
 
 // 结算数据

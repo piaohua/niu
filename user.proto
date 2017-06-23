@@ -165,7 +165,6 @@ message CClassicList
 message SClassicList
 {
     optional uint32  code      = 1 [default = 1060];//协议号
-    optional uint32  state     = 2;//1=开放
-    repeated Classic list      = 3;//
-    optional uint32  error     = 4 [default = 0]; // 错误码 ,0:正常
+    repeated Classic list      = 2;//
+    optional uint32  error     = 3 [default = 0]; // 错误码 ,0:正常
 }
