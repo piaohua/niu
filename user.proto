@@ -168,3 +168,21 @@ message SClassicList
     repeated Classic list      = 2;//
     optional uint32  error     = 3 [default = 0]; // 错误码 ,0:正常
 }
+
+message CVipList
+{
+    optional uint32 code  = 1 [default = 1062];//协议号
+}
+
+message SVipList
+{
+    optional uint32  code      = 1 [default = 1062];//协议号
+    repeated Vip     list      = 2;//
+    optional uint32  error     = 3 [default = 0]; // 错误码 ,0:正常
+}
+
+message SPushVip
+{
+    optional uint32  code      = 1 [default = 1063];//协议号
+    optional uint32  level     = 2;//
+}

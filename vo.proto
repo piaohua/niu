@@ -49,6 +49,16 @@ message Classic
     optional uint32 maximum   = 6;//房间最高0表示没限制
 }
 
+// Vip
+message Vip
+{
+    optional uint32 level  = 1;//等级
+    optional uint32 number = 2;//等级充值金额数量限制
+    optional uint32 pay    = 3;//充值赠送百分比5=赠送充值的5%
+    optional uint32 prize  = 4;//赠送抽奖次数
+    optional uint32 kick   = 5;//经典场可踢人次数
+}
+
 // 玩家的基础数据
 message RoomUser
 {
