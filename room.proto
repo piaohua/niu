@@ -370,3 +370,13 @@ message SClassicGameover
     optional uint32       dealer        = 3;//庄家
     repeated ClassicOver  data          = 4;//结算
 }
+
+//------------------
+
+//发牌
+message SPubDraw
+{
+	optional uint32 code  = 1 [default = 4080];//协议号
+	required uint32 state = 2;  //房间状态
+	required uint32 card  = 3;  //公共牌1张
+}
