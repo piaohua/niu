@@ -84,6 +84,7 @@ message RoomUser
 	repeated uint32 cards    =13;//玩家手牌
 	optional uint32 num      =14;//玩家抢庄倍数
 	optional bool   niu      =15;//是否选牛
+	optional VipInfo vip     =16;//vip
 }
 
 // 房间数据
@@ -124,6 +125,7 @@ message FreeUser
 	required bool   ready    =9;//玩家de状态,true游戏中
 	optional uint32 bet      =10;//玩家下注0下注中,n下注总额度
 	repeated RoomBets bets   =11;//个人各位置对应下注额
+	optional VipInfo vip     =12;//vip
 }
 
 // 房间数据
