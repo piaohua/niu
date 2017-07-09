@@ -185,4 +185,5 @@ message SPushVip
 {
     optional uint32  code      = 1 [default = 1063];//协议号
     optional uint32  level     = 2;//
+    optional uint32  number    = 3;//
 }

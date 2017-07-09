@@ -18,6 +18,7 @@ message UserData
 	optional uint32 give      =12;//当日已赠送金额
 	optional uint32 bank      =13;//银行存款
 	optional Activity data    =14;//活动数据
+	optional VipInfo vip      =15;//vip
 }
 
 // 玩家的活动数据
@@ -57,6 +58,13 @@ message Vip
     optional uint32 pay    = 3;//充值赠送百分比5=赠送充值的5%
     optional uint32 prize  = 4;//赠送抽奖次数
     optional uint32 kick   = 5;//经典场可踢人次数
+}
+
+// vip
+message VipInfo
+{
+    optional uint32 level     = 1;//
+    optional uint32 number    = 2;//
 }
 
 // 玩家的基础数据
