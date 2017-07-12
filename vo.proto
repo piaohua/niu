@@ -4,15 +4,21 @@ package protocol;
 // 玩家的详细数据
 message UserData
 {
-    required UserInfo info    =1;//用户信息
-    required uint32 roomtype  =2;//所在房间类型id
-    required string roomid    =3;//所在房间id
-    required string invitecode=4;//所在房间邀请码
-    optional string agent     =5;//绑定的代理ID
-    optional uint32 give      =6;//当日已赠送金额
-    optional uint32 bank      =7;//银行存款
-    optional Activity data    =8;//活动数据
-    optional VipInfo vip      =9;//vip
+    required string userid    =1;//用户账号
+    required string nickname  =2;//昵称
+    optional string phone     =3;//电话号码
+    required uint32 sex       =4;//用户性别,男1 女0
+    required string photo     =5;//头像
+    required uint32 coin      =6;//金币
+    required uint32 diamond   =7;//钻石
+    required uint32 roomtype  =8;//所在房间类型id
+    required string roomid    =9;//所在房间id
+    required string invitecode=10;//所在房间邀请码
+    optional string agent     =11;//绑定的代理ID
+    optional uint32 give      =12;//当日已赠送金额
+    optional uint32 bank      =13;//银行存款
+    optional Activity data    =14;//活动数据
+    optional VipInfo vip      =15;//vip
 }
 
 message UserInfo
@@ -87,29 +93,40 @@ message VipInfo
 // 玩家的基础数据
 message RoomUser
 {
-    required UserInfo info   =1;//用户信息
-	required uint32 seat     =2;//座位号
-	required bool   ready    =3;//玩家de准备状态
-	required int32  score    =4;//私人局积分
-	required uint32 dealer   =5;//玩家抢庄0抢庄中,1抢庄,2不抢
-	optional uint32 bet      =6;//玩家下注0下注中,n下注额度
-	repeated uint32 cards    =7;//玩家手牌
-	optional uint32 num      =8;//玩家抢庄倍数
-	optional bool   niu      =9;//是否选牛
-	optional VipInfo vip     =10;//vip
+    required string userid   =1;//用户账号
+    required string nickname =2;//昵称
+    optional string phone    =3;//电话号码
+    required uint32 sex      =4;//用户性别,男1 女0
+    required string photo    =5;//头像
+    required uint32 coin     =6;//金币
+    required uint32 diamond  =7;//钻石
+	required uint32 seat     =8;//座位号
+	required bool   ready    =9;//玩家de准备状态
+	required int32  score    =10;//私人局积分
+	required uint32 dealer   =11;//玩家抢庄0抢庄中,1抢庄,2不抢
+	optional uint32 bet      =12;//玩家下注0下注中,n下注额度
+	repeated uint32 cards    =13;//玩家手牌
+	optional uint32 num      =14;//玩家抢庄倍数
+	optional bool   niu      =15;//是否选牛
+	optional VipInfo vip     =16;//vip
 }
 
 // 房间数据
 message RoomData
 {
-    required RoomInfo info    = 1;  //房间信息
-	required uint32 expire    = 2;  //牌局设定的时间（牌局存在的时间）
-	required string invitecode= 3;  //房间邀请码  私人牌局都有邀请码,邀请码是唯一的
-	required uint32 dealer    = 4;  //庄家seat
-	required uint32 round     = 5;  //剩余牌局数
-	required string userid    = 6;  //房主ID
-	required uint32 state     = 7;  //房间状态,0准备中,1抢庄中,2下注中
-    optional uint32 card      = 8;  //公共牌
+	required string roomid    = 1;//牌局id
+	required uint32 rtype     = 2;//room type
+	required string rname     = 3;//room name
+	required uint32 count     = 4;//当前房间限制玩家数量
+    optional uint32 ante      = 5;//房间底分
+    optional uint32 chat      = 6;//1对讲机 2语音 3语音转文字
+	required uint32 expire    = 7;  //牌局设定的时间（牌局存在的时间）
+	required string invitecode= 8;  //房间邀请码  私人牌局都有邀请码,邀请码是唯一的
+	required uint32 dealer    = 9;  //庄家seat
+	required uint32 round     = 10;  //剩余牌局数
+	required string userid    = 11;  //房主ID
+	required uint32 state     = 12;  //房间状态,0准备中,1抢庄中,2下注中
+    optional uint32 card      = 13;  //公共牌
 }
 
 // 下注信息
@@ -122,27 +139,38 @@ message RoomBets
 // 玩家的基础数据
 message FreeUser
 {
-    required UserInfo info   =1;//用户信息
-	required uint32 seat     =2;//座位号
-	required bool   ready    =3;//玩家de状态,true游戏中
-	optional uint32 bet      =4;//玩家下注0下注中,n下注总额度
-	repeated RoomBets bets   =5;//个人各位置对应下注额
-	optional VipInfo vip     =6;//vip
+    required string userid   =1;//用户账号
+    required string nickname =2;//昵称
+    optional string phone    =3;//电话号码
+    required uint32 sex      =4;//用户性别,男1 女0
+    required string photo    =5;//头像
+    required uint32 coin     =6;//金币
+    required uint32 diamond  =7;//钻石
+	required uint32 seat     =8;//座位号
+	required bool   ready    =9;//玩家de状态,true游戏中
+	optional uint32 bet      =10;//玩家下注0下注中,n下注总额度
+	repeated RoomBets bets   =11;//个人各位置对应下注额
+	optional VipInfo vip     =12;//vip
 }
 
 // 房间数据
 message FreeRoom
 {
-    required RoomInfo info        = 1;//房间信息
-	required uint32 dealer        = 2;//庄家seat
-	required string userid        = 3;//庄家ID
-	required uint32 coin          = 4;//庄家上庄金额
-	required uint32 pond          = 5;//奖池
-	required uint32 state         = 6;//房间状态,0准备中,1游戏中
-	optional uint32 timer         = 7;//下注剩余时间
-	required uint32 dealerNum     = 8;//可坐庄总次数
-	required uint32 leftDealerNum = 9;//剩余坐庄次数
-	required string photo         =10;//庄家头像
+	required string roomid        = 1;//牌局id
+	required uint32 rtype         = 2;//room type
+	required string rname         = 3;//room name
+	required uint32 count         = 4;//当前房间限制玩家数量
+    optional uint32 ante          = 5;//房间底分
+    optional uint32 chat          = 6;//1对讲机 2语音 3语音转文字
+	required uint32 dealer        = 7;//庄家seat
+	required string userid        = 8;//庄家ID
+	required uint32 coin          = 9;//庄家上庄金额
+	required uint32 pond          =10;//奖池
+	required uint32 state         =11;//房间状态,0准备中,1游戏中
+	optional uint32 timer         =12;//下注剩余时间
+	required uint32 dealerNum     =13;//可坐庄总次数
+	required uint32 leftDealerNum =14;//剩余坐庄次数
+	required string photo         =15;//庄家头像
 }
 
 // 结算数据
@@ -214,12 +242,17 @@ message RoomVote
 //获取玩家的私人房间记录
 message RecordList
 {
-    required RoomInfo info    = 1;  //房间信息
-	required string invitecode= 2;  //房间邀请码
-    required uint32 totalRound= 3;  //房间总局数
-	required string userid    = 4;  //房间房主ID
-    required uint32 ctime     = 5;  //房间创建时间
-	repeated OverList list    = 6;  //房间总结算
+	required string roomid    = 1;//牌局id
+	required uint32 rtype     = 2;//room type
+	required string rname     = 3;//room name
+	required uint32 count     = 4;//当前房间限制玩家数量
+    optional uint32 ante      = 5;//房间底分
+    optional uint32 chat      = 6;//1对讲机 2语音 3语音转文字
+	required string invitecode= 7;  //房间邀请码
+    required uint32 totalRound= 8;  //房间总局数
+	required string userid    = 9;  //房间房主ID
+    required uint32 ctime     = 10;  //房间创建时间
+	repeated OverList list    = 11;  //房间总结算
 }
 
 // 上庄列表
