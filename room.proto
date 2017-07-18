@@ -380,3 +380,32 @@ message SPubDraw
 	required uint32 state = 2;  //房间状态
 	required uint32 card  = 3;  //公共牌1张
 }
+
+// 领取刮牌奖励
+message CGetPrize
+{
+    optional uint32       code          = 1 [default = 4081];//协议号
+	optional uint32       card          = 2;//获奖的牌值
+}
+
+// 刮牌奖励,需要推送豆子和钻石的改变
+message SGetPrize
+{
+    optional uint32       code          = 1 [default = 4081];//协议号
+	optional uint32       card          = 2;//获奖的牌值
+    optional uint32       error         = 3 [default = 0]; // 错误码 
+}
+
+// 刮奖
+message CPrizeCards
+{
+    optional uint32       code          = 1 [default = 4082];//协议号
+}
+
+// 刮奖
+message SPrizeCards
+{
+    optional uint32       code          = 1 [default = 4082];//协议号
+	repeated PrizeCard    list          = 2;//奖励牌值列表
+    optional uint32       error         = 3 [default = 0]; // 错误码 
+}

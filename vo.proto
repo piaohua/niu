@@ -275,3 +275,10 @@ message FreeTrend
 	required uint32 seat = 1;  //天 地 玄 黄 座位号 2,3,4,5
 	required bool   win  = 2;  //true赢 false输  只判断牌型大小输赢
 }
+
+message PrizeCard
+{
+	optional uint32 card      = 1;//牌值
+    optional uint32 rtype     = 2;//奖品类型
+    optional uint32 number    = 3;//奖品数量
+}
