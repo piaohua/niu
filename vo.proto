@@ -282,3 +282,64 @@ message PrizeCard
     optional uint32 rtype     = 2;//奖品类型
     optional uint32 number    = 3;//奖品数量
 }
+
+// zi
+
+//牌面
+message RoomCard {
+	optional uint32 seat      =1; //玩家座位号
+	repeated uint32 handcards =2; //玩家手牌
+	repeated uint32 outcards  =3; //玩家出牌
+	repeated uint32 chowcards =4; //玩家吃牌
+	repeated uint32 pongcards =5; //玩家碰牌
+	repeated uint32 kongcards =6; //玩家杠牌
+}
+
+//房间内位置数据
+message RoomSeat {
+	optional uint32 seat      =1; //玩家座位号
+	optional string userid    =2; //玩家ID
+	optional string nickname  =3; //
+	optional string photo     =4; //
+}
+
+// 单局结算数据
+message ZiRoomOver
+{
+	optional uint32 seat  =1; //玩家座位号
+	optional int32  total =2; //总输赢
+	optional int32  score =3; //输赢数量
+	optional uint32 xi    =4; //息数量
+}
+
+//获取玩家的私人房间记录
+message ZiRecordList
+{
+	optional ZiRoomInfo info            =1; //房间信息
+	repeated RoomSeat seats  =2; //位置信息
+	repeated ZiOverList list   =3; //结算明细
+}
+
+// 总结算数据
+message ZiOverList
+{
+	optional uint32 round  =1; //第几轮
+	optional uint32 dealer =2; //庄家seat
+    repeated ZiRoomOver list =3; //输赢明细
+}
+
+//房间基本信息
+message ZiRoomInfo {
+	optional string roomid    = 1;  //牌局id
+	optional uint32 rtype     = 2;  //room type
+	optional string rname     = 3;  //room name
+	optional uint32 expire    = 4;  //牌局设定的时间（牌局存在的时间）
+	optional uint32 count     = 5;  //当前房间限制玩家数量
+	optional string invitecode= 6;  //房间邀请码  私人牌局都有邀请码,邀请码是唯一的
+	optional string userid    = 9;  //房主ID
+	optional uint32 round     =10;  //房间局数
+    optional uint32 ante      =11;  //房间底分
+    optional uint32 chat      =12;  //1对讲机 2语音 3语音转文字
+    optional uint32 ctime     =13;  //房间创建时间
+	optional uint32 xi        =14;  //房间息数
+}

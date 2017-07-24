@@ -409,3 +409,107 @@ message SPrizeCards
 	repeated PrizeCard    list          = 2;//奖励牌值列表
     optional uint32       error         = 3 [default = 0]; // 错误码 
 }
+
+//------------------
+// zi
+
+// 进入房间
+message CEnterZiRoom
+{ 
+	optional uint32 code        = 1 [default = 4100];//协议号
+	required string invitecode  = 2; //房间邀请码
+}
+message SEnterZiRoom
+{ 
+	optional uint32    code     = 1 [default = 4100];//协议号
+	required RoomData  roominfo = 2;//房间的详细资料
+	repeated RoomUser  userinfo = 3;//已在房间的玩家基础信息
+	optional RoomVote  voteinfo = 4;//发起投票的信息
+	repeated RoomCard  cardinfo = 5;//牌面
+	optional uint32    error    = 6 [default = 0]; // 错误码 
+}
+
+// 创建房间
+message CCreateZiRoom
+{
+	optional uint32 code    = 1 [default = 4101];//协议号
+	required string rname   = 2;  //房间名字
+	required uint32 rtype   = 3;  //房间类型
+	required uint32 ante    = 4;  //底分
+	required uint32 round   = 5;  //牌局数
+	required uint32 payment = 6;  //付费方式0=房主付费,1=AA付费 
+	required uint32 count   = 7;  //人数限制
+    optional uint32 chat    = 8;  //1对讲机 2语音 3语音转文字
+	optional uint32 xi      = 9;  //息数限制
+}
+// 返回房间数据,
+message SCreateZiRoom
+{
+	optional uint32 code    = 1 [default = 4101];//协议号
+	optional RoomData rdata = 2; //
+	optional uint32 error   = 3 [default = 0]; // 错误码 
+}
+
+// 其他玩家进入房间
+message SZiCamein
+{
+	optional uint32 code    = 1 [default = 4104];//协议号
+	optional RoomUser userinfo= 2;// 玩家的信息
+}
+
+// 结算广播接口，游戏结束
+message SZiGameover
+{
+	optional uint32  code    = 1 [default = 4102];//协议号
+	optional uint32   dealer  = 2;//庄家
+	optional uint32   round   = 3;//剩余牌局数
+	repeated RoomSeat seats  = 4;//玩家座位
+	repeated RoomCard cards  = 5;//牌面
+	repeated RoomOver  list  = 6;//当前局结算
+}
+
+// 个人牌局记录,默认最近30场
+message CZiGameRecord
+{
+	optional uint32  code    = 1 [default = 4103];//协议号
+	optional uint32 page = 2; //页数,每页30,默认发1最近30场
+}
+
+message SZiGameRecord
+{
+	optional uint32  code    = 1 [default = 4103];//协议号
+	repeated ZiRecordList list = 2; //
+}
+
+//发牌
+message SPushDeal
+{
+	optional uint32  code    = 1 [default = 4104];//协议号
+	uint32 seat  = 2;  //位置
+	repeated uint32 cards = 3;  //手牌
+}
+
+//摸牌
+message SPushDraw
+{
+	optional uint32  code    = 1 [default = 4105];//协议号
+	optional uint32 seat  = 2;  //位置
+	optional uint32 card  = 3;  //牌
+	optional uint32 value = 4;  //操作值
+}
+
+//打牌
+message SPushDiscard
+{
+	optional uint32  code    = 1 [default = 4106];//协议号
+	optional uint32 seat  = 2;  //位置
+	optional uint32 card  = 3;  //牌
+	optional uint32 value = 4;  //操作值
+}
+
+//完成抢庄,推送庄家位置
+message SZiPushDealer
+{
+	optional uint32  code    = 1 [default = 4107];//协议号
+	optional uint32 dealer= 2;  //庄家位置
+}
