@@ -127,6 +127,7 @@ message RoomData
 	required string userid    = 11;  //房主ID
 	required uint32 state     = 12;  //房间状态,0准备中,1抢庄中,2下注中
     optional uint32 card      = 13;  //公共牌
+    optional uint32 xi        = 14;  //息
 }
 
 // 下注信息
@@ -287,12 +288,13 @@ message PrizeCard
 
 //牌面
 message RoomCard {
-	optional uint32 seat      =1; //玩家座位号
-	repeated uint32 handcards =2; //玩家手牌
-	repeated uint32 outcards  =3; //玩家出牌
-	repeated uint32 chowcards =4; //玩家吃牌
-	repeated uint32 pongcards =5; //玩家碰牌
-	repeated uint32 kongcards =6; //玩家杠牌
+    optional uint32 seat      =1; //玩家座位号
+    repeated uint32 handcards =2; //玩家手牌
+    repeated uint32 kancards  =3; //玩家坎牌
+    repeated uint32 outcards  =4; //玩家出牌
+    repeated uint32 chowcards =5; //玩家吃牌
+    repeated uint32 pongcards =6; //玩家碰,偎牌
+    repeated uint32 ticards   =7; //玩家提,跑牌
 }
 
 //房间内位置数据
@@ -315,16 +317,16 @@ message ZiRoomOver
 //获取玩家的私人房间记录
 message ZiRecordList
 {
-	optional ZiRoomInfo info            =1; //房间信息
+	optional ZiRoomInfo info =1; //房间信息
 	repeated RoomSeat seats  =2; //位置信息
-	repeated ZiOverList list   =3; //结算明细
+	repeated ZiOverList list =3; //结算明细
 }
 
 // 总结算数据
 message ZiOverList
 {
-	optional uint32 round  =1; //第几轮
-	optional uint32 dealer =2; //庄家seat
+	optional uint32 round    =1; //第几轮
+	optional uint32 dealer   =2; //庄家seat
     repeated ZiRoomOver list =3; //输赢明细
 }
 
@@ -336,10 +338,11 @@ message ZiRoomInfo {
 	optional uint32 expire    = 4;  //牌局设定的时间（牌局存在的时间）
 	optional uint32 count     = 5;  //当前房间限制玩家数量
 	optional string invitecode= 6;  //房间邀请码  私人牌局都有邀请码,邀请码是唯一的
-	optional string userid    = 9;  //房主ID
-	optional uint32 round     =10;  //房间局数
-    optional uint32 ante      =11;  //房间底分
-    optional uint32 chat      =12;  //1对讲机 2语音 3语音转文字
-    optional uint32 ctime     =13;  //房间创建时间
-	optional uint32 xi        =14;  //房间息数
+	optional string userid    = 7;  //房主ID
+	optional uint32 round     = 8;  //房间局数
+    optional uint32 ante      = 9;  //房间底分
+    optional uint32 chat      =10;  //1对讲机 2语音 3语音转文字
+	optional uint32 dealer    =11;  //庄家seat
+    optional uint32 ctime     =12;  //房间创建时间
+	optional uint32 xi        =13;  //房间息数
 }

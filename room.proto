@@ -460,12 +460,13 @@ message SZiCamein
 // 结算广播接口，游戏结束
 message SZiGameover
 {
-	optional uint32  code    = 1 [default = 4102];//协议号
+	optional uint32   code    = 1 [default = 4102];//协议号
 	optional uint32   dealer  = 2;//庄家
 	optional uint32   round   = 3;//剩余牌局数
 	repeated RoomSeat seats  = 4;//玩家座位
 	repeated RoomCard cards  = 5;//牌面
 	repeated RoomOver  list  = 6;//当前局结算
+	repeated uint32  lastcards = 7;//底牌
 }
 
 // 个人牌局记录,默认最近30场
@@ -484,15 +485,15 @@ message SZiGameRecord
 //发牌
 message SPushDeal
 {
-	optional uint32  code    = 1 [default = 4104];//协议号
-	uint32 seat  = 2;  //位置
+	optional uint32 code  = 1 [default = 4104];//协议号
+	optional uint32 seat  = 2;  //位置
 	repeated uint32 cards = 3;  //手牌
 }
 
 //摸牌
 message SPushDraw
 {
-	optional uint32  code    = 1 [default = 4105];//协议号
+	optional uint32 code  = 1 [default = 4105];//协议号
 	optional uint32 seat  = 2;  //位置
 	optional uint32 card  = 3;  //牌
 	optional uint32 value = 4;  //操作值
@@ -501,15 +502,40 @@ message SPushDraw
 //打牌
 message SPushDiscard
 {
-	optional uint32  code    = 1 [default = 4106];//协议号
+	optional uint32 code  = 1 [default = 4106];//协议号
 	optional uint32 seat  = 2;  //位置
 	optional uint32 card  = 3;  //牌
 	optional uint32 value = 4;  //操作值
 }
 
-//完成抢庄,推送庄家位置
-message SZiPushDealer
+//自动操作(提,跑,偎)
+message SPushAuto
 {
-	optional uint32  code    = 1 [default = 4107];//协议号
-	optional uint32 dealer= 2;  //庄家位置
+	optional uint32 code  = 1 [default = 4107];//协议号
+	optional uint32 seat  = 2;  //位置
+	optional uint32 card  = 3;  //牌
+	optional uint32 value = 4;  //操作值
+}
+
+// 玩家吃,碰,胡操作
+message COperate
+{
+    optional uint32 code    = 1 [default = 4108];//协议号
+    required uint32 value   = 2;  //掩码值
+    repeated uint32 cards   = 3;  //吃牌
+    repeated uint32 bione   = 4;  //比牌
+    repeated uint32 bitwo   = 5;  //比牌
+}
+
+message SOperate
+{
+    optional uint32 code    = 1 [default = 4108];//协议号
+    optional uint32 seat    = 2;  //操作玩家的座位号
+    optional uint32 beseat  = 3;  //被操作玩家座位号
+    optional uint32 card    = 4;  //被操作的牌值
+    optional uint32 value   = 5;  //操作掩码
+    repeated uint32 cards   = 6;  //吃牌
+    repeated uint32 bione   = 7;  //比牌
+    repeated uint32 bitwo   = 8;  //比牌
+    optional uint32 error   = 9 [default = 0]; // 错误码
 }
