@@ -303,6 +303,7 @@ message RoomSeat {
 	optional string userid    =2; //玩家ID
 	optional string nickname  =3; //
 	optional string photo     =4; //
+	optional int32  score     =5; //输赢数量
 }
 
 // 单局结算数据
@@ -319,15 +320,6 @@ message ZiRecordList
 {
 	optional ZiRoomInfo info =1; //房间信息
 	repeated RoomSeat seats  =2; //位置信息
-	repeated ZiOverList list =3; //结算明细
-}
-
-// 总结算数据
-message ZiOverList
-{
-	optional uint32 round    =1; //第几轮
-	optional uint32 dealer   =2; //庄家seat
-    repeated ZiRoomOver list =3; //输赢明细
 }
 
 //房间基本信息
