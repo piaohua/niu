@@ -485,7 +485,7 @@ message SZiGameRecord
 //发牌
 message SPushDeal
 {
-	optional uint32 code  = 1 [default = 4104];//协议号
+	optional uint32 code  = 1 [default = 4109];//协议号
 	optional uint32 seat  = 2;  //位置
 	repeated uint32 cards = 3;  //手牌
 }
