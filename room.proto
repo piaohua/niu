@@ -462,11 +462,13 @@ message SZiGameover
 {
 	optional uint32     code      = 1 [default = 4102];//协议号
 	optional uint32     dealer    = 2;//庄家
-	optional uint32     round     = 3;//剩余牌局数
-	repeated RoomSeat   seats     = 4;//玩家座位
-	repeated RoomCard   cards     = 5;//牌面
-	repeated ZiRoomOver list      = 6;//当前局结算
-	repeated uint32     lastcards = 7;//底牌
+	optional uint32     seat      = 3;//庄家
+	optional uint32     value     = 4;//庄家
+	optional uint32     round     = 5;//剩余牌局数
+	repeated RoomSeat   seats     = 6;//玩家座位
+	repeated RoomCard   cards     = 7;//牌面
+	repeated ZiRoomOver list      = 8;//当前局结算
+	repeated uint32     lastcards = 9;//底牌
 }
 
 // 个人牌局记录,默认最近30场
