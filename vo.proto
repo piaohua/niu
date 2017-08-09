@@ -312,7 +312,6 @@ message ZiRoomOver
 	optional uint32 seat  =1; //玩家座位号
 	optional int32  total =2; //总输赢
 	optional int32  score =3; //输赢数量
-	optional uint32 xi    =4; //息数量
 }
 
 //获取玩家的私人房间记录

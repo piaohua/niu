@@ -465,10 +465,13 @@ message SZiGameover
 	optional uint32     seat      = 3;//庄家
 	optional uint32     value     = 4;//庄家
 	optional uint32     round     = 5;//剩余牌局数
-	repeated RoomSeat   seats     = 6;//玩家座位
-	repeated RoomCard   cards     = 7;//牌面
-	repeated ZiRoomOver list      = 8;//当前局结算
-	repeated uint32     lastcards = 9;//底牌
+	optional uint32     xi        = 6;//息数量
+	optional uint32     fan       = 7;//番数量
+	optional uint32     deng      = 8;//等数量
+	repeated RoomSeat   seats     = 9;//玩家座位
+	repeated RoomCard   cards     =10;//牌面
+	repeated ZiRoomOver list      =11;//当前局结算
+	repeated uint32     lastcards =12;//底牌
 }
 
 // 个人牌局记录,默认最近30场
@@ -502,12 +505,20 @@ message SPushDraw
 }
 
 //打牌
+message CPushDiscard
+{
+	optional uint32 code  = 1 [default = 4106];//协议号
+	optional uint32 card  = 2;  //牌
+}
+
+//打牌
 message SPushDiscard
 {
 	optional uint32 code  = 1 [default = 4106];//协议号
 	optional uint32 seat  = 2;  //位置
 	optional uint32 card  = 3;  //牌
 	optional uint32 value = 4;  //操作值
+    optional uint32 error = 5 [default = 0]; // 错误码
 }
 
 //自动操作(提,跑,偎)
