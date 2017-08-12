@@ -495,6 +495,15 @@ message SPushDeal
 	repeated uint32 cards = 3;  //手牌
 }
 
+//庄家发牌
+message SPushDealerDeal
+{
+	optional uint32 code  = 1 [default = 4110];//协议号
+	optional uint32 seat  = 2;  //位置
+	optional uint32 card  = 3;  //牌
+	optional uint32 value = 4;  //操作值
+}
+
 //摸牌
 message SPushDraw
 {
