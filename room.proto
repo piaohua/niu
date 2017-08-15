@@ -511,6 +511,8 @@ message SPushDraw
 	optional uint32 seat  = 2;  //位置
 	optional uint32 card  = 3;  //牌
 	optional uint32 value = 4;  //操作值
+	optional uint32 count = 5;  //剩余牌数
+	repeated uint32 cards = 6;  //手牌值
 }
 
 //打牌
