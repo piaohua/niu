@@ -314,11 +314,20 @@ message ZiRoomOver
 	optional int32  score =3; //输赢数量
 }
 
+// 单局结算数据
+message ZiRoomRound
+{
+	optional uint32 seat  =1; //玩家座位号
+	optional int32  score =2; //输赢数量
+	optional uint32 round =3; //局数
+}
+
 //获取玩家的私人房间记录
 message ZiRecordList
 {
 	optional ZiRoomInfo info =1; //房间信息
 	repeated RoomSeat seats  =2; //位置信息
+	repeated ZiRoomRound list=3; //单局信息
 }
 
 //房间基本信息
