@@ -109,6 +109,7 @@ message RoomUser
 	optional uint32 num      =14;//玩家抢庄倍数
 	optional bool   niu      =15;//是否选牛
 	optional VipInfo vip     =16;//vip
+	optional uint32 value    =17;//操作值
 }
 
 // 房间数据
