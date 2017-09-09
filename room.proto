@@ -418,6 +418,7 @@ message CEnterZiRoom
 { 
 	optional uint32 code        = 1 [default = 4100];//协议号
 	required string invitecode  = 2; //房间邀请码
+	optional string id          = 3;//id为空自由分配
 }
 message SEnterZiRoom
 { 
@@ -562,20 +563,4 @@ message SOperate
     repeated uint32 bione   = 7;  //比牌
     repeated uint32 bitwo   = 8;  //比牌
     optional uint32 error   = 9 [default = 0]; // 错误码
-}
-
-// 进入房间
-message CEnterCoinRoom
-{
-	optional uint32 code        = 1 [default = 4110];//协议号
-	optional string id          = 2;//id为空自由分配
-}
-
-message SEnterCoinRoom
-{
-    optional uint32    code     = 1 [default = 4110];//协议号
-    optional RoomData  roominfo = 2;//房间的详细资料
-    repeated RoomUser  userinfo = 3;//已在房间的玩家基础信息
-    repeated RoomBets  betsinfo = 4;//下注倍数
-    optional uint32    error    = 5 [default = 0]; // 错误码 
 }
