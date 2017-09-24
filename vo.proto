@@ -132,6 +132,7 @@ message RoomData
     optional uint32 draw      = 15;  //摸牌
     optional uint32 discard   = 16;  //出牌
     optional uint32 seat      = 17;  //操作位置
+    optional uint32 number    = 18;  //剩余牌数
 }
 
 // 下注信息
