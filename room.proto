@@ -564,3 +564,11 @@ message SOperate
     repeated uint32 bitwo   = 8;  //比牌
     optional uint32 error   = 9 [default = 0]; // 错误码
 }
+
+//房间状态
+message SPushStatus
+{
+	optional uint32 code   = 1 [default = 4109];//协议号
+	optional uint32 seat   = 2;  //位置
+	optional int32  status = 3;  //状态
+}
