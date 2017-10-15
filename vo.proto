@@ -62,6 +62,13 @@ message Prize
     optional uint32 number    = 3;//奖品数量
 }
 
+// 附件
+message Items
+{
+    optional uint32 rtype     = 1;//类型
+    optional uint32 number    = 2;//数量
+}
+
 // 经典场
 message Classic
 {
@@ -351,3 +358,64 @@ message ZiRoomInfo {
     optional uint32 ctime     =12;  //房间创建时间
 	optional uint32 xi        =13;  //房间息数
 }
+
+// 排位赛
+
+//当前赛季
+message DanSeason
+{
+    optional uint32 start     = 1;//开始时间(时间截)
+    optional uint32 end       = 2;//结束时间(时间截)
+    optional uint32 remaining = 3;//剩余时间(秒)
+}
+
+//排行榜
+message DanRanking
+{
+    optional uint32 rank     = 1;//排名
+    optional string userid   = 2;//玩家ID
+    optional string photo    = 3;//玩家头像
+    optional string nickname = 4;//玩家昵称
+    optional uint32 dan      = 5;//玩家段位
+    optional uint32 stars    = 6;//玩家星级
+    optional uint32 points   = 7;//玩家积分
+}
+
+//任务列表
+message DanTaskList
+{
+    optional string id      = 1;//序列
+    optional string name    = 2;//任务名称
+    optional uint32 diamond = 3;//钻石奖励
+    optional uint32 coin    = 4;//金币奖励
+    optional uint32 status  = 5;//状态0未达成,1可领取,2已领取
+}
+
+//排位赛段位列表
+message DanList
+{
+    optional string id     = 1;//序列
+    optional string name   = 2;//段位名称
+    optional uint32 dan    = 3;//段位ID
+    repeated DanInfo level = 4;//段位信息
+    optional uint32 number = 5;//预计局数
+}
+
+//段位对应星级积分
+message DanInfo
+{
+    optional uint32 stars  = 1;//星级
+    optional uint32 points = 2;//积分
+}
+
+//个人战绩
+message DanCombat
+{
+    optional uint32 number  = 1;//总局数
+    optional uint32 wins    = 2;//胜利局数
+    optional uint32 topDan  = 3;//最高段位
+    optional uint32 curDan  = 4;//当前段位
+    optional uint32 topRank = 5;//最高排名
+    optional uint32 curRank = 6;//当前排名
+}
+
