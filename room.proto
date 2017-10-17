@@ -505,6 +505,24 @@ message SPushDealerDeal
 	optional uint32 value = 4;  //操作值
 }
 
+//庄家补牌
+message SPushDealerBu
+{
+	optional uint32 code  = 1 [default = 4112];//协议号
+	optional uint32 seat  = 2;  //位置
+	optional uint32 card  = 3;  //牌
+	optional uint32 value = 4;  //操作值
+}
+
+//闲家跑胡
+message SPushPaoHu
+{
+	optional uint32 code  = 1 [default = 4113];//协议号
+	optional uint32 seat  = 2;  //位置
+	optional uint32 card  = 3;  //牌
+	optional uint32 value = 4;  //操作值
+}
+
 //摸牌
 message SPushDraw
 {

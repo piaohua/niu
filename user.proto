@@ -203,13 +203,8 @@ message CMailList
 
 message SMailList
 {
-    optional uint32 code       = 1 [default = 1071];//协议号
-    optional uint32 id         = 2;  // 邮件ID
-    optional string from       = 3;  // 发件人
-    optional string content    = 4;  // 邮件内容
-    optional Items  attachment = 5;  // 邮件附件
-    optional uint32 etime      = 6;  // 过期时间
-    optional uint32 ctime      = 7;  // 邮件时间
+    optional uint32 code   = 1 [default = 1071];//协议号
+    repeated MailList list = 2;  // 邮件
 }
 
 // 删除邮件
@@ -225,6 +220,19 @@ message SDeleteMail
     optional uint32 error  = 2 [default = 0]; // 错误码
 }
 
+// 删除邮件
+message CGetMailItem
+{
+    optional uint32 code = 1 [default = 1073];//协议号
+    optional uint32 id   = 2; // 邮件ID
+}
+
+message SGetMailItem
+{
+    optional uint32 code   = 1 [default = 1073];//协议号
+    optional uint32 error  = 2 [default = 0]; // 错误码
+}
+
 //排位赛
 
 //排位基本数据信息
@@ -236,7 +244,7 @@ message CDanInfo
 message SDanInfo
 {
     optional uint32 code   = 1 [default = 1080];//协议号
-    optional DanList info  = 2; // 错误码
+    repeated DanList info  = 2; // 错误码
     optional uint32 error  = 3 [default = 0]; // 错误码
 }
 
@@ -263,9 +271,9 @@ message CDanRanking
 
 message SDanRanking
 {
-    optional uint32 code   = 1 [default = 1082];//协议号
-    optional DanList info  = 2; // 排行数据
-    optional uint32 error  = 3 [default = 0]; // 错误码
+    optional uint32 code     = 1 [default = 1082];//协议号
+    repeated DanRanking list = 2; // 排行数据
+    optional uint32 error    = 3 [default = 0]; // 错误码
 }
 
 //排位赛匹配

@@ -359,6 +359,17 @@ message ZiRoomInfo {
 	optional uint32 xi        =13;  //房间息数
 }
 
+message MailList
+{
+    optional uint32 id         = 1;  // 邮件ID
+    optional string from       = 2;  // 发件人
+    optional string content    = 3;  // 邮件内容
+    repeated Items  attachment = 4;  // 邮件附件
+    optional uint32 status     = 5;  // 状态0未读,1已读,2已领取
+    optional uint32 etime      = 6;  // 过期时间
+    optional uint32 ctime      = 7;  // 邮件时间
+}
+
 // 排位赛
 
 //当前赛季
