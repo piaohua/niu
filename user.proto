@@ -217,7 +217,8 @@ message CDeleteMail
 message SDeleteMail
 {
     optional uint32 code   = 1 [default = 1072];//协议号
-    optional uint32 error  = 2 [default = 0]; // 错误码
+    optional uint32 id     = 2; // 邮件ID
+    optional uint32 error  = 3 [default = 0]; // 错误码
 }
 
 // 删除邮件
@@ -230,7 +231,8 @@ message CGetMailItem
 message SGetMailItem
 {
     optional uint32 code   = 1 [default = 1073];//协议号
-    optional uint32 error  = 2 [default = 0]; // 错误码
+    optional uint32 id     = 2; // 邮件ID
+    optional uint32 error  = 3 [default = 0]; // 错误码
 }
 
 //排位赛
