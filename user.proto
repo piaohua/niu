@@ -289,3 +289,10 @@ message SDanMatch
     optional uint32 code   = 1 [default = 1083];//协议号
     optional uint32 error  = 2 [default = 0]; // 错误码
 }
+
+//排位赛更新
+message SDanNotice
+{
+    optional uint32 code      = 1 [default = 1084];//协议号
+    optional DanCombat combat = 2; // 个人战绩
+}

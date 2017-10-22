@@ -422,11 +422,12 @@ message DanInfo
 //个人战绩
 message DanCombat
 {
-    optional uint32 number  = 1;//总局数
-    optional uint32 wins    = 2;//胜利局数
-    optional uint32 topDan  = 3;//最高段位
-    optional uint32 curDan  = 4;//当前段位
-    optional uint32 topRank = 5;//最高排名
-    optional uint32 curRank = 6;//当前排名
+    optional uint32 number    = 1;//总局数
+    optional uint32 wins      = 2;//胜利局数
+    optional uint32 topDan    = 3;//最高段位
+    optional uint32 topRank   = 4;//最高排名
+    optional uint32 curDan    = 5;//当前段位
+    optional uint32 curStars  = 6;//当前星级
+    optional uint32 curPoints = 7;//当前积分
+    optional uint32 curRank   = 8;//当前排名
 }
-
