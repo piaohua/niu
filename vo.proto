@@ -361,7 +361,7 @@ message ZiRoomInfo {
 
 message MailList
 {
-    optional uint32 id         = 1;  // 邮件ID
+    optional string id         = 1;  // 邮件ID
     optional string from       = 2;  // 发件人
     optional string content    = 3;  // 邮件内容
     repeated Items  attachment = 4;  // 邮件附件

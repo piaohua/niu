@@ -198,7 +198,7 @@ message SMailNotice
 message CMailList
 {
     optional uint32 code  = 1 [default = 1071];//协议号
-    optional uint32 maxid = 2; // 邮件缓存中的最大邮件ID
+    optional string maxid = 2; // 邮件缓存中的最大邮件ID
 }
 
 message SMailList
@@ -211,27 +211,27 @@ message SMailList
 message CDeleteMail
 {
     optional uint32 code = 1 [default = 1072];//协议号
-    optional uint32 id   = 2; // 邮件ID
+    optional string id   = 2; // 邮件ID
 }
 
 message SDeleteMail
 {
     optional uint32 code   = 1 [default = 1072];//协议号
-    optional uint32 id     = 2; // 邮件ID
+    optional string id     = 2; // 邮件ID
     optional uint32 error  = 3 [default = 0]; // 错误码
 }
 
-// 删除邮件
+// 收取附件
 message CGetMailItem
 {
     optional uint32 code = 1 [default = 1073];//协议号
-    optional uint32 id   = 2; // 邮件ID
+    optional string id   = 2; // 邮件ID
 }
 
 message SGetMailItem
 {
     optional uint32 code   = 1 [default = 1073];//协议号
-    optional uint32 id     = 2; // 邮件ID
+    optional string id     = 2; // 邮件ID
     optional uint32 error  = 3 [default = 0]; // 错误码
 }
 
