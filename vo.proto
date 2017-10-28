@@ -117,6 +117,7 @@ message RoomUser
 	optional bool   niu      =15;//是否选牛
 	optional VipInfo vip     =16;//vip
 	optional uint32 value    =17;//操作值
+    optional DanCombat dan   =18;//个人战绩
 }
 
 // 房间数据

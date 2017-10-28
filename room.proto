@@ -418,7 +418,8 @@ message CEnterZiRoom
 { 
 	optional uint32 code        = 1 [default = 4100];//协议号
 	required string invitecode  = 2; //房间邀请码
-	optional string id          = 3;//id为空自由分配
+	optional string id          = 3; //id为空自由分配
+	optional bool   dan         = 4; //排位赛匹配,优先级 4 - 2 -3
 }
 message SEnterZiRoom
 { 
