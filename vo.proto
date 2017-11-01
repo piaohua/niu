@@ -325,6 +325,15 @@ message ZiRoomOver
 	optional uint32 seat  =1; //玩家座位号
 	optional int32  total =2; //总输赢
 	optional int32  score =3; //输赢数量
+    optional uint32 coin  =4; //个人总剩余
+}
+
+//排位赛更新
+message DanOver
+{
+	optional uint32 seat      = 1;//玩家座位号
+	optional string userid    = 2;//用户id
+    optional DanCombat combat = 3;//个人战绩
 }
 
 // 单局结算数据

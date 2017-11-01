@@ -475,6 +475,7 @@ message SZiGameover
 	repeated RoomCard   cards     =11;//牌面
 	repeated ZiRoomOver list      =12;//当前局结算
 	repeated uint32     lastcards =13;//底牌
+	repeated DanOver    combat    =14;//排位赛数据
 }
 
 // 个人牌局记录,默认最近30场
