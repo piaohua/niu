@@ -282,5 +282,6 @@ message SDanRanking
 message SDanNotice
 {
     optional uint32 code      = 1 [default = 1084];//协议号
-    optional DanCombat combat = 2; // 个人战绩
+	optional string userid    = 2;//用户id
+    optional DanCombat combat = 3;//个人战绩
 }
