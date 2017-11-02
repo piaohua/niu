@@ -322,10 +322,11 @@ message RoomSeat {
 // 单局结算数据
 message ZiRoomOver
 {
-	optional uint32 seat  =1; //玩家座位号
-	optional int32  total =2; //总输赢
-	optional int32  score =3; //输赢数量
-    optional uint32 coin  =4; //个人总剩余
+	optional uint32 seat   =1; //玩家座位号
+	optional int32  total  =2; //总输赢
+	optional int32  score  =3; //输赢数量
+    optional uint32 coin   =4; //个人总剩余
+	optional int32  points =5; //积分
 }
 
 //排位赛更新
