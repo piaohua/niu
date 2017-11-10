@@ -1,0 +1,126 @@
+syntax = "proto2";
+package protocol;
+
+//seat
+//(1有牛，2无牛)
+//(3牛1-3， 4牛4-6，5牛7-9)
+//(6牛牛，7两对，8同花，9五花牛，10四炸，11五小牛)
+//
+//（有牛，两对，同花）
+//（牛牛，无牛）
+
+// 疯狂投注
+message CBettingInfo
+{
+    optional uint32  code   = 1 [default = 4200];//协议号
+}
+
+message SBettingInfo
+{
+    optional uint32  code     = 1 [default = 4200];//协议号
+    optional string  index    = 2 ;//期数
+    optional Betting status   = 3 ;//状态0下注,1等待
+    repeated JackpotInfo list = 4 ;//奖池
+    optional uint32  error    = 5 ;//错误码
+}
+
+// 投注状态
+message Betting
+{
+    optional uint32  times   = 1 ;//剩余时间(秒)
+    optional uint32  state   = 2 ;//状态0投注,1等待
+}
+
+// 奖池
+message JackpotInfo
+{
+    optional uint32 seat   = 1;//位置
+    optional float  odds   = 2;//赔率
+    optional uint32 number = 3;//数量
+}
+
+// 疯狂投注押注
+message CBetting
+{
+    optional uint32  code   = 1 [default = 4201];//协议号
+    optional uint32  seat   = 2 ;//押注位置
+    optional uint32  number = 3 ;//押注数量
+}
+
+message SBetting
+{
+    optional uint32  code   = 1 [default = 4201];//协议号
+    optional uint32  seat   = 2 ;//押注位置
+    optional uint32  number = 3 ;//押注数量
+    optional uint32  error  = 4 ;//错误码
+}
+
+// 奖池更新广播
+message SPushJackpot {
+    optional uint32  code  = 1 [default = 4202];//协议号
+    repeated Jackpot list  = 2;//奖池列表
+}
+
+// 奖池
+message Jackpot
+{
+    optional uint32 seat   = 1;//位置
+    optional uint32 number = 2;//数量
+}
+
+// 开奖结果
+message SPushBetting
+{
+    optional uint32 code      = 1 [default = 4203];//协议号
+    repeated uint32 cards     = 2;//牌面
+    optional int32  number    = 3;//输赢数量
+    repeated JackpotOver list = 4;//奖池列表
+    optional Betting status   = 5;//状态
+}
+
+// 奖池
+message JackpotOver
+{
+    optional uint32 seat   = 1;//位置
+    optional bool   win    = 2;//是否中奖
+    optional float  odds   = 3;//赔率
+    optional uint32 count  = 4;//位置下注总数量
+    optional uint32 ante   = 5;//个人位置下注量
+    optional int32  number = 6;//个人位置输赢量
+}
+
+// 新一轮开始广播
+message SPushNewBetting
+{
+    optional uint32  code   = 1 [default = 4204];//协议号
+    optional Betting status = 2;//状态
+}
+
+// 疯狂投注记录
+message CBettingRecord
+{
+    optional uint32 code = 1 [default = 4205];//协议号
+	required uint32 page = 2; //页数,每页30,默认发1最近30场
+}
+
+message SBettingRecord
+{
+    optional uint32  code    = 1 [default = 4205];//协议号
+	repeated RecordList list = 2; //记录
+}
+
+// 个人投注记录列表
+message RecordList
+{
+    optional string index  = 1;//期数
+    repeated uint32 cards  = 2;//牌面
+    optional int32  number = 3;//输赢数量
+    repeated RecordBetting list = 4;//下注情况
+}
+
+// 个人下注情况
+message RecordBetting
+{
+    optional uint32 seat   = 1;//位置
+    optional uint32 number = 2;//下注数量
+}

@@ -1,86 +1,60 @@
 syntax = "proto2";
 package protocol;
 
-// 刮奖押注
+// 全民刮奖
 message CLotteryInfo
 {
-    optional uint32  code   = 1 [default = 4200];//协议号
+    optional uint32  code   = 1 [default = 4220];//协议号
 }
 
-// 刮奖押注
 message SLotteryInfo
 {
-    optional uint32  code     = 1 [default = 4200];//协议号
-    optional string  index    = 2 ;//期数
-    repeated JackpotRate mult = 3 ;//倍率
-    optional uint32  error    = 4 ;//错误码
+    optional uint32   code     = 1 [default = 4220];//协议号
+    optional Lottery  info     = 2 ;//数量
+    repeated Lotterys list     = 3 ;//购买列表
+    optional uint32   error    = 4 ;//错误码
 }
 
-// 奖池位置赔率
-message JackpotRate
-{
-    optional uint32 seat   = 1;//位置
-    optional uint32 number = 2;//倍数
-}
-
-// 刮奖押注
-message CLotteryBet
-{
-    optional uint32  code   = 1 [default = 4201];//协议号
-    optional uint32  seat   = 2 ;//押注位置
-    optional uint32  number = 3 ;//押注数量
-}
-
-// 刮奖押注
-message SLotteryBet
-{
-    optional uint32  code   = 1 [default = 4201];//协议号
-    optional uint32  seat   = 2 ;//押注位置
-    optional uint32  number = 3 ;//押注数量
-    optional uint32  error  = 4 ;//错误码
-}
-
-// 奖池更新广播
-message SPushJackpot {
-    optional uint32  code  = 1 [default = 4202];//协议号
-    optional uint32  times = 2;//剩余时间(秒)
-    repeated Jackpot list  = 3;//奖池列表
-}
-
-//seat
-//(1有牛，2无牛)
-//(3牛1-3， 4牛4-6，5牛7-9)
-//(6牛牛，7两对，8同花，9五花牛，10四炸，11五小牛)
-
-// 刮奖
-//（有牛，两对，同花）
-//（牛牛，无牛）
-message SPushLottery
-{
-    optional uint32   code   = 1 [default = 4203];//协议号
-    repeated Jackpot  list   = 2;//奖池列表
-    repeated Lotterys result = 3;//结果列表
-}
-
-// 奖池
-message Jackpot
-{
-    optional uint32 seat   = 1;//位置
-    optional uint32 number = 2;//数量
-}
-
-// 开奖结果
-message Lotterys
-{
-    optional uint32 seat   = 1;//位置
-    optional bool   win    = 2;//是否中奖
-    optional int32  number = 3;//输赢数量
-    repeated Lottery list  = 4;//玩家输赢
-}
-
-// 开奖结果
+// 刮奖机会
 message Lottery
 {
-    optional string userid  = 1;//ID
-    optional int32  number  = 2;//输赢数量
+    optional uint32  used     = 1 ;//已用
+    optional uint32  number   = 2 ;//总数量
+}
+
+// 刮奖
+message Lotterys
+{
+    optional uint32  times    = 1 ;//次数
+    optional uint32  number   = 2 ;//钻石数量
+}
+
+// 刮奖
+message CLottery
+{
+    optional uint32  code   = 1 [default = 4221];//协议号
+}
+
+message SLottery
+{
+    optional uint32  code   = 1 [default = 4221];//协议号
+    repeated uint32  cards  = 2 ;//牌面
+    optional uint32  niu    = 3 ;//牛(掩码)
+    optional uint32  number = 4 ;//中奖金额
+    optional Lottery info   = 5 ;//数量
+    optional uint32  error  = 6 ;//错误码
+}
+
+// 刮奖购买
+message CLotteryBuy
+{
+    optional uint32  code   = 1 [default = 4222];//协议号
+    optional uint32  times  = 2 ;//次数
+}
+
+message SLotteryBuy
+{
+    optional uint32  code   = 1 [default = 4222];//协议号
+    optional Lottery info   = 2 ;//数量
+    optional uint32  error  = 3 ;//错误码
 }
