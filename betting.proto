@@ -74,13 +74,13 @@ message SPushBetting
     optional uint32 code      = 1 [default = 4203];//协议号
     repeated uint32 cards     = 2;//牌面
     optional int32  number    = 3;//个人输赢总数量
-    repeated JackpotOver list = 4;//奖池列表
-    repeated JackpotInfo info = 5;//奖池列表
+    repeated JackpotSelf list = 4;//奖池列表
+    repeated JackpotOver info = 5;//奖池列表
     optional Betting status   = 6;//状态
 }
 
 // 奖池
-message JackpotInfo
+message JackpotOver
 {
     optional uint32 seat   = 1;//位置
     optional bool   win    = 2;//是否中奖
@@ -89,7 +89,7 @@ message JackpotInfo
 }
 
 // 奖池
-message JackpotOver
+message JackpotSelf
 {
     optional uint32 seat   = 1;//位置
     optional uint32 ante   = 2;//个人位置下注量
