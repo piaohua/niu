@@ -73,20 +73,27 @@ message SPushBetting
 {
     optional uint32 code      = 1 [default = 4203];//协议号
     repeated uint32 cards     = 2;//牌面
-    optional int32  number    = 3;//输赢数量
+    optional int32  number    = 3;//个人输赢总数量
     repeated JackpotOver list = 4;//奖池列表
-    optional Betting status   = 5;//状态
+    repeated JackpotInfo info = 5;//奖池列表
+    optional Betting status   = 6;//状态
+}
+
+// 奖池
+message JackpotInfo
+{
+    optional uint32 seat   = 1;//位置
+    optional bool   win    = 2;//是否中奖
+    optional float  odds   = 3;//赔率
+    optional uint32 count  = 4;//位置下注总数量
 }
 
 // 奖池
 message JackpotOver
 {
     optional uint32 seat   = 1;//位置
-    optional bool   win    = 2;//是否中奖
-    optional float  odds   = 3;//赔率
-    optional uint32 count  = 4;//位置下注总数量
-    optional uint32 ante   = 5;//个人位置下注量
-    optional int32  number = 6;//个人位置输赢量
+    optional uint32 ante   = 2;//个人位置下注量
+    optional int32  number = 3;//个人位置输赢量
 }
 
 // 新一轮开始广播
@@ -115,8 +122,9 @@ message RecordBettings
 {
     optional string index  = 1;//期数
     repeated uint32 cards  = 2;//牌面
-    optional int32  number = 3;//输赢数量
-    repeated RecordBetting list = 4;//下注情况
+    repeated uint32 seats  = 3;//中奖位置
+    optional int32  number = 4;//输赢数量
+    repeated RecordBetting list = 5;//下注情况
 }
 
 // 个人下注情况
