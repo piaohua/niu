@@ -106,11 +106,11 @@ message CBettingRecord
 message SBettingRecord
 {
     optional uint32  code    = 1 [default = 4205];//协议号
-	repeated RecordList list = 2; //记录
+	repeated RecordBettings list = 2; //记录
 }
 
 // 个人投注记录列表
-message RecordList
+message RecordBettings
 {
     optional string index  = 1;//期数
     repeated uint32 cards  = 2;//牌面
