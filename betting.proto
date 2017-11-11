@@ -93,7 +93,8 @@ message JackpotOver
 message SPushNewBetting
 {
     optional uint32  code   = 1 [default = 4204];//协议号
-    optional Betting status = 2;//状态
+    optional string  index  = 2;//期号
+    optional Betting status = 3;//状态
 }
 
 // 疯狂投注记录
