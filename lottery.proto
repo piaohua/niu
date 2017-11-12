@@ -9,30 +9,25 @@ message CLotteryInfo
 
 message SLotteryInfo
 {
-    optional uint32   code     = 1 [default = 4220];//协议号
-    optional Lottery  info     = 2 ;//数量
-    repeated Lotterys list     = 3 ;//购买列表
-    optional uint32   error    = 4 ;//错误码
+    optional uint32   code      = 1 [default = 4220];//协议号
+    repeated Lottery  list      = 2 ;//数量
+	optional uint32   single    = 3 ;//一注需要消耗的钻石(目前定义的是一注5钻石，如果我购买10注那就是花费50钻石)
+	optional uint32   maxnumber = 4 ;//一次最多购买多少注
+    optional uint32   error     = 5 ;//错误码
 }
 
 // 刮奖机会
 message Lottery
 {
-    optional uint32  used     = 1 ;//已用
-    optional uint32  number   = 2 ;//总数量
-}
-
-// 刮奖
-message Lotterys
-{
-    optional uint32  times    = 1 ;//次数
-    optional uint32  number   = 2 ;//钻石数量
+    optional uint32  niu     = 1 ;//1有牛,2牛牛,3五花牛,4五小牛,5四炸
+    optional uint32  number  = 2 ;//中奖金额
 }
 
 // 刮奖
 message CLottery
 {
     optional uint32  code   = 1 [default = 4221];//协议号
+	optional uint32  times  = 2 ;//购买的注数
 }
 
 message SLottery
@@ -41,20 +36,5 @@ message SLottery
     repeated uint32  cards  = 2 ;//牌面
     optional uint32  niu    = 3 ;//牛(掩码)
     optional uint32  number = 4 ;//中奖金额
-    optional Lottery info   = 5 ;//数量
-    optional uint32  error  = 6 ;//错误码
-}
-
-// 刮奖购买
-message CLotteryBuy
-{
-    optional uint32  code   = 1 [default = 4222];//协议号
-    optional uint32  times  = 2 ;//次数
-}
-
-message SLotteryBuy
-{
-    optional uint32  code   = 1 [default = 4222];//协议号
-    optional Lottery info   = 2 ;//数量
-    optional uint32  error  = 3 ;//错误码
+    optional uint32  error  = 5 ;//错误码
 }
