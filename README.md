@@ -18,3 +18,9 @@ betting code 4200+ 疯狂投注
 lottery code 4220+ 全民刮奖
 vo    公共
 ```
+
+## TODO
+
+    * 房间列表</br>
+    * 固定庄家</br>
+    * 闲家翻倍</br>
