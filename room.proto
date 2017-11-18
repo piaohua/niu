@@ -597,12 +597,12 @@ message SPushStatus
 //房间列表
 message CRoomList
 {
-	optional uint32 code   = 1 [default = 4113];//协议号
+	optional uint32 code   = 1 [default = 4115];//协议号
 	required uint32 rtype  = 2;  //房间类型
 }
 message SRoomList
 {
-	optional uint32 code   = 1 [default = 4113];//协议号
+	optional uint32 code   = 1 [default = 4115];//协议号
 	repeated RoomData list = 2;  //列表
 	optional uint32 error  = 3 [default = 0]; // 错误码 
 }
